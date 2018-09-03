@@ -12,7 +12,6 @@ const ProductTable = ({ products, permissions, productItems, drill }) => {
             <th>Currency</th>
             <th>Actions</th>
           </tr>
-          {/*{productItems}*/}
           <ProductItems products={products} permissions={permissions} drill={drill} />
         </tbody>
       </table>

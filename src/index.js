@@ -5,6 +5,7 @@ import { createStore, compose } from "redux";
 import { Provider, connect } from "react-redux";
 
 import ProductTable from "./components/ProductsTable";
+import PermissionButtons from "./components/PermissionButtons";
 
 import "./style.css";
 
@@ -31,59 +32,13 @@ class Products extends Component {
   }
 
   render() {
-    const {
-      products,
-      addProduct,
-      deleteProduct,
-      updateProduct,
-      permissions,
-      togglePermission
-    } = this.props;
-
-    const permissionButtons = permissions.map((permission, i) => {
-      return (
-        <button key={i} onClick={() => togglePermission(permission, i)}>
-          {permission.name}
-        </button>
-      );
-    });
-
-    const productItems = products.map((product, i) => {
-      return (
-        <tr key={i}>
-          <td>{i}</td>
-          <td dangerouslySetInnerHTML={{ __html: product.name }} />
-          <td>{product.price}</td>
-          <td>{product.currency}</td>
-          <td>
-            {this.props.permissions[1].visible && (
-              <button onClick={() => deleteProduct(i)}>Delete</button>
-            )}
-            {this.props.permissions[2].visible && (
-              <button
-                onClick={() =>
-                  updateProduct(
-                    i,
-                    this.props.name,
-                    this.state.price,
-                    this.state.currency
-                  )
-                }
-              >
-                Update
-              </button>
-            )}
-          </td>
-        </tr>
-      );
-    });
+    const { products, addProduct, permissions, togglePermission } = this.props;
 
     return (
       <div>
         <ProductTable
           products={products}
           permissions={permissions}
-          productItems={productItems}
           drill={this.props}
         />
         <div>
@@ -119,7 +74,10 @@ class Products extends Component {
         </div>
         <hr />
         <h2>Enable/Disable Permissions</h2>
-        {permissionButtons}
+        <PermissionButtons
+          permissions={permissions}
+          togglePermission={togglePermission}
+        />
       </div>
     );
   }
