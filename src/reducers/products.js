@@ -35,24 +35,17 @@ const initialState = {
   ],
   temporary: [
     {
-      name: "name",
-      price: "price",
-      currency: "cur"
+      name: "",
+      price: "",
+      currency: ""
     }
   ],
-  name: "",
-  price: "",
-  currency: ""
 };
 
 export default function products(state = initialState, action) {
   const products = state.products;
   const permissions = state.permissions;
   const temporary = state.temporary;
-
-  const name = state.name;
-  const price = state.price;
-  const currency = state.currency;
 
   switch (action.type) {
     case ADD_PRODUCT:
@@ -62,13 +55,9 @@ export default function products(state = initialState, action) {
           { name: action.name, price: action.price, currency: action.currency }
         ],
         permissions,
-          temporary,
-        name,
-        price,
-        currency
+        temporary
       };
     case UPDATE_PRODUCT:
-      console.log("clicked delete");
       const updateProducts = [...products];
       updateProducts[action.index].name = action.name;
       updateProducts[action.index].price = action.price;
@@ -76,10 +65,7 @@ export default function products(state = initialState, action) {
       return {
         products: updateProducts,
         permissions,
-          temporary,
-        name,
-        price,
-        currency
+        temporary
       };
     case DELETE_PRODUCT:
       const deleteProducts = [...products];
@@ -87,10 +73,7 @@ export default function products(state = initialState, action) {
       return {
         products: deleteProducts,
         permissions,
-          temporary,
-        name,
-        price,
-        currency
+        temporary
       };
     case TOGGLE_BUTTON:
       const updatedPermission = permissions.map((permission, i) => {
@@ -106,20 +89,17 @@ export default function products(state = initialState, action) {
       return {
         ...state,
         permissions: updatedPermission,
-          temporary,
-        name,
-        price,
-        currency
+        temporary
       };
 
-      case CHANGE_ACTION:
+    case CHANGE_ACTION:
       const changes = temporary[0];
       changes[action.field] = action.value;
 
       return {
         products,
         permissions,
-        temporary,
+        temporary
       };
 
     default:

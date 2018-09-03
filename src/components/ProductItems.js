@@ -1,17 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 
-import { updateProduct, deleteProduct } from "../actions";
+const ProductItems = ({ drill }) => {
+    const payload = drill;
 
-class ProductItems extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const payload = this.props;
-    console.log(payload);
-
-    const products = payload.products.map((product, i) => {
+    return payload.products.map((product, i) => {
       return (
         <tr key={i}>
           <td>{i}</td>
@@ -19,19 +11,19 @@ class ProductItems extends Component {
           <td>{product.price}</td>
           <td>{product.currency}</td>
           <td>
-            {payload.drill.permissions[1].visible && (
-              <button onClick={() => payload.drill.deleteProduct(i)}>
+            {payload.permissions[1].visible && (
+              <button onClick={() => payload.deleteProduct(i)}>
                 Delete
               </button>
             )}
-            {payload.drill.permissions[2].visible && (
+            {payload.permissions[2].visible && (
               <button
                 onClick={() =>
-                  payload.drill.updateProduct(
+                  payload.updateProduct(
                     i,
-                    payload.drill.temporary[0].name,
-                    payload.drill.temporary[0].price,
-                    payload.drill.temporary[0].currency
+                    payload.temporary[0].name,
+                    payload.temporary[0].price,
+                    payload.temporary[0].currency
                   )
                 }
               >
@@ -42,9 +34,6 @@ class ProductItems extends Component {
         </tr>
       );
     });
-
-    return products;
-  }
-}
+  };
 
 export default ProductItems;

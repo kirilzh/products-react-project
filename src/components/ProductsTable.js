@@ -12,7 +12,7 @@ const ProductTable = ({ products, permissions, productItems, drill }) => {
             <th>Currency</th>
             <th>Actions</th>
           </tr>
-          <ProductItems products={products} permissions={permissions} drill={drill} />
+          <ProductItems drill={drill} />
         </tbody>
       </table>
   );
