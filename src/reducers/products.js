@@ -39,44 +39,37 @@ const initialState = {
       price: "",
       currency: ""
     }
-  ],
+  ]
 };
 
 export default function products(state = initialState, action) {
-  const products = state.products;
-  const permissions = state.permissions;
-  const temporary = state.temporary;
-
   switch (action.type) {
     case ADD_PRODUCT:
       return {
+        ...state,
         products: [
-          ...products,
+          ...state.products,
           { name: action.name, price: action.price, currency: action.currency }
-        ],
-        permissions,
-        temporary
+        ]
       };
     case UPDATE_PRODUCT:
-      const updateProducts = [...products];
+      const updateProducts = [...state.products];
       updateProducts[action.index].name = action.name;
       updateProducts[action.index].price = action.price;
       updateProducts[action.index].currency = action.currency;
       return {
-        products: updateProducts,
-        permissions,
-        temporary
+        ...state,
+        products: updateProducts
       };
-    case DELETE_PRODUCT:
-      const deleteProducts = [...products];
+      case DELETE_PRODUCT:
+      const deleteProducts = [...state.products];
       deleteProducts.splice(action.index, 1);
       return {
+          ...state,
         products: deleteProducts,
-        permissions,
-        temporary
       };
     case TOGGLE_BUTTON:
-      const updatedPermission = permissions.map((permission, i) => {
+      const updatedPermission = state.permissions.map((permission, i) => {
         if (i === action.index) {
           return {
             ...permission,
@@ -88,18 +81,15 @@ export default function products(state = initialState, action) {
 
       return {
         ...state,
-        permissions: updatedPermission,
-        temporary
+        permissions: updatedPermission
       };
 
-    case CHANGE_ACTION:
-      const changes = temporary[0];
+      case CHANGE_ACTION:
+      const changes = state.temporary[0];
       changes[action.field] = action.value;
 
       return {
-        products,
-        permissions,
-        temporary
+          ...state
       };
 
     default:

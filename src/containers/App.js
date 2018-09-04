@@ -86,6 +86,16 @@ function mapStateToProps(state) {
   };
 }
 
+
+const endpoints = {
+    products: {
+        validations: {
+            name: '\/[a-zA-Z]+\/',
+            price: '\/[0-9\.]+\/'
+        }
+    }
+};
+
 // Map Redux action to component props
 function mapDispatchToProps(dispatch) {
   return {
