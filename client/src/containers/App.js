@@ -8,12 +8,13 @@ import {
   changeAction,
   deleteProduct,
   toggleButton,
-  saveProduct, updateProduct
+  saveProduct,
+  updateProduct,
+  addProductFormToggle
 } from "../actions/index";
 import { connect } from "react-redux";
 
 class App extends Component {
-
   // componentDidMount() {
   //   this.callApi()
   //     .then(res =>
@@ -33,43 +34,53 @@ class App extends Component {
     this.props.changeAction(field, value);
   }
 
+  showForm() {
+    this.props.addProductFormToggle();
+  }
+
+
+
   render() {
     const { addProduct, permissions, togglePermission } = this.props;
 
     return (
       <div>
         <ProductTable drill={this.props} />
-        <div>
-          <input
-            type="text"
-            name="name"
-            placeholder="Product name"
-            onChange={e => this.handleChange(e.target.name, e.target.value)}
-          />
-          <input
-            name="price"
-            placeholder="Price"
-            onChange={e => this.handleChange(e.target.name, e.target.value)}
-          />
-          <input
-            name="currency"
-            placeholder="Currency"
-            onChange={e => this.handleChange(e.target.name, e.target.value)}
-          />
-          {this.props.permissions[0].visible && (
-            <button
-              onClick={() =>
-                addProduct(
-                  this.props.name,
-                  this.props.price,
-                  this.props.currency
-                )
-              }
-            >
-              Add
-            </button>
-          )}
-        </div>
+
+        {this.props.addProductFormVisible && (
+          <div>
+            <input
+              type="text"
+              name="name"
+              placeholder="Product name"
+              onChange={e => this.handleChange(e.target.name, e.target.value)}
+            />
+            <input
+              name="price"
+              placeholder="Price"
+              onChange={e => this.handleChange(e.target.name, e.target.value)}
+            />
+            <input
+              name="currency"
+              placeholder="Currency"
+              onChange={e => this.handleChange(e.target.name, e.target.value)}
+            />
+            {this.props.permissions[0].visible && (
+              <button
+                onClick={() =>
+                  addProduct(
+                    this.props.name,
+                    this.props.price,
+                    this.props.currency
+                  )
+                }
+              >
+                Save
+              </button>
+            )}
+          </div>
+        )}
+        <button onClick={() => this.showForm()}>Add</button>
         <hr />
         <h2>Enable/Disable Permissions</h2>
         <PermissionButtons
@@ -88,7 +99,8 @@ App.propType = {
   saveProduct: PropTypes.func.isRequired,
   togglePermission: PropTypes.func.isRequired,
   changeAction: PropTypes.func.isRequired,
-  updateProduct: PropTypes.func.isRequired
+  updateProduct: PropTypes.func.isRequired,
+  addProductFormToggle: PropTypes.func.isRequired
 };
 
 // Map Redux state to component
@@ -99,7 +111,7 @@ function mapStateToProps(state) {
     name: state.name,
     price: state.price,
     currency: state.currency,
-    editable: state.editable
+    addProductFormVisible: state.addProductFormVisible
   };
 }
 
@@ -112,8 +124,10 @@ function mapDispatchToProps(dispatch) {
     saveProduct: (index, name, price, currency) =>
       dispatch(saveProduct(index, name, price, currency)),
     togglePermission: (text, index) => dispatch(toggleButton(text, index)),
-    changeAction: (field, value, index) => dispatch(changeAction(field, value, index)),
-    updateProduct: index => dispatch(updateProduct(index))
+    changeAction: (field, value, index) =>
+      dispatch(changeAction(field, value, index)),
+    updateProduct: index => dispatch(updateProduct(index)),
+    addProductFormToggle: () => dispatch(addProductFormToggle())
   };
 }
 

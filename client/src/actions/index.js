@@ -36,3 +36,7 @@ export const changeAction = (field, value, index) => ({
   value,
   index
 });
+
+export const addProductFormToggle = () => ({
+  type: "ADD_PRODUCT_FORM_TOGGLE"
+});

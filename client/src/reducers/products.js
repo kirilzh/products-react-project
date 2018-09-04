@@ -4,7 +4,8 @@ import {
   DELETE_PRODUCT,
   TOGGLE_BUTTON,
   CHANGE_ACTION,
-  UPDATE_PRODUCT
+  UPDATE_PRODUCT,
+  ADD_PRODUCT_FORM_TOGGLE
 } from "../constants/ActionTypes";
 
 const initialState = {
@@ -40,7 +41,7 @@ const initialState = {
   name: "",
   price: "",
   currency: "",
-  editable: false
+  addProductFormVisible: false
 };
 
 export default function products(state = initialState, action) {
@@ -98,11 +99,25 @@ export default function products(state = initialState, action) {
       };
 
     case CHANGE_ACTION:
-      console.log(action);
-      state.products[action.index][action.field] = action.value;
+      if (action.index === undefined) {
+        state[action.field] = action.value;
+        return {
+          ...state
+        }
+
+      } else {
+        state.products[action.index][action.field] = action.value;
+        return {
+          ...state
+        };
+      }
+
+    case ADD_PRODUCT_FORM_TOGGLE: {
+      state.addProductFormVisible = true;
       return {
         ...state
-      };
+      }
+    }
 
     default:
       return state;

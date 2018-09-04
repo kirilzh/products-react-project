@@ -10,11 +10,9 @@ class ProductItems extends Component {
   }
 
   render() {
-    console.log(this.props.drill);
     const payload = this.props.drill;
 
     return payload.products.map((product, i) => {
-      console.log(product);
       return (
         <tr key={i}>
           <td>{i}</td>
