@@ -1,9 +1,10 @@
 import {
   ADD_PRODUCT,
-  UPDATE_PRODUCT,
+  SAVE_PRODUCT,
   DELETE_PRODUCT,
   TOGGLE_BUTTON,
-  CHANGE_ACTION
+  CHANGE_ACTION,
+  UPDATE_PRODUCT
 } from "../constants/ActionTypes";
 
 const initialState = {
@@ -11,12 +12,14 @@ const initialState = {
     {
       name: "TV",
       price: 1000,
-      currency: "USD"
+      currency: "USD",
+      editable: false
     },
     {
       name: "SSD",
       price: 100,
-      currency: "USD"
+      currency: "USD",
+      editable: false
     }
   ],
   permissions: [
@@ -26,17 +29,18 @@ const initialState = {
     },
     {
       name: "DELETE",
-      visible: true
+      visible: false
     },
     {
       name: "UPDATE",
-      visible: false
+      visible: true
     }
   ],
 
   name: "",
   price: "",
-  currency: ""
+  currency: "",
+  editable: false
 };
 
 export default function products(state = initialState, action) {
@@ -46,18 +50,30 @@ export default function products(state = initialState, action) {
         ...state,
         products: [
           ...state.products,
-          { name: action.name, price: action.price, currency: action.currency }
+          { name: action.name, price: action.price, currency: action.currency, editable: false }
         ]
       };
+
     case UPDATE_PRODUCT:
+      const updateProductButton = [...state.products];
+      updateProductButton[action.index].editable = !updateProductButton[action.index].editable;
+
+      return {
+        ...state,
+        products: updateProductButton
+      };
+
+    case SAVE_PRODUCT:
       const updateProducts = [...state.products];
       updateProducts[action.index].name = action.name;
       updateProducts[action.index].price = action.price;
       updateProducts[action.index].currency = action.currency;
+      updateProducts[action.index].editable = !updateProducts[action.index].editable;
       return {
         ...state,
         products: updateProducts
       };
+
     case DELETE_PRODUCT:
       const deleteProducts = [...state.products];
       deleteProducts.splice(action.index, 1);
@@ -82,12 +98,8 @@ export default function products(state = initialState, action) {
       };
 
     case CHANGE_ACTION:
-      // const changes = state;
-      state[action.field] = action.value;
-      // changes[action.field] = action.value;
-
-      console.log(action.field, action.value);
-
+      console.log(action);
+      state.products[action.index][action.field] = action.value;
       return {
         ...state
       };

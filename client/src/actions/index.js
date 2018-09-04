@@ -5,8 +5,14 @@ export const addProduct = (name, price, currency) => ({
   currency
 });
 
-export const updateProduct = (index, name, price, currency) => ({
+export const updateProduct = index => ({
   type: "UPDATE_PRODUCT",
+  index
+});
+
+
+export const saveProduct = (index, name, price, currency) => ({
+  type: "SAVE_PRODUCT",
   index,
   name,
   price,
@@ -24,8 +30,9 @@ export const toggleButton = (button, index) => ({
   index
 });
 
-export const changeAction = (field, value) => ({
+export const changeAction = (field, value, index) => ({
   type: "CHANGE_ACTION",
   field,
-  value
+  value,
+  index
 });

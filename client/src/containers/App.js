@@ -8,31 +8,26 @@ import {
   changeAction,
   deleteProduct,
   toggleButton,
-  updateProduct
+  saveProduct, updateProduct
 } from "../actions/index";
 import { connect } from "react-redux";
 
 class App extends Component {
-  state = {
-    response: ''
-  };
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({
-        response: res.express
-      }))
-      .catch(err => console.log(err));
-  }
-
-  callApi = async () => {
-    const response = await fetch('/permissions');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
+  // componentDidMount() {
+  //   this.callApi()
+  //     .then(res =>
+  //       this.setState({
+  //         response: res.permissions[0].name
+  //       })
+  //     )
+  //     .catch(err => console.log(err));
+  // }
+  //
+  // callApi = async () => {
+  //   const response = await fetch("/permissions");
+  //   return await response.json();
+  // };
 
   handleChange(field, value) {
     this.props.changeAction(field, value);
@@ -40,7 +35,6 @@ class App extends Component {
 
   render() {
     const { addProduct, permissions, togglePermission } = this.props;
-    console.log(this.props)
 
     return (
       <div>
@@ -82,7 +76,6 @@ class App extends Component {
           permissions={permissions}
           togglePermission={togglePermission}
         />
-        <p>{this.state.response}</p>
       </div>
     );
   }
@@ -92,9 +85,10 @@ App.propType = {
   products: PropTypes.object.isRequired,
   addProduct: PropTypes.func.isRequired,
   deleteProduct: PropTypes.func.isRequired,
-  updateProduct: PropTypes.func.isRequired,
+  saveProduct: PropTypes.func.isRequired,
   togglePermission: PropTypes.func.isRequired,
-  changeAction: PropTypes.func.isRequired
+  changeAction: PropTypes.func.isRequired,
+  updateProduct: PropTypes.func.isRequired
 };
 
 // Map Redux state to component
@@ -104,19 +98,10 @@ function mapStateToProps(state) {
     permissions: state.permissions,
     name: state.name,
     price: state.price,
-    currency: state.currency
+    currency: state.currency,
+    editable: state.editable
   };
 }
-
-
-const endpoints = {
-    products: {
-        validations: {
-            name: '\/[a-zA-Z]+\/',
-            price: '\/[0-9\.]+\/'
-        }
-    }
-};
 
 // Map Redux action to component props
 function mapDispatchToProps(dispatch) {
@@ -124,16 +109,16 @@ function mapDispatchToProps(dispatch) {
     addProduct: (name, price, currency) =>
       dispatch(addProduct(name, price, currency)),
     deleteProduct: index => dispatch(deleteProduct(index)),
-    updateProduct: (index, name, price, currency) =>
-      dispatch(updateProduct(index, name, price, currency)),
+    saveProduct: (index, name, price, currency) =>
+      dispatch(saveProduct(index, name, price, currency)),
     togglePermission: (text, index) => dispatch(toggleButton(text, index)),
-    changeAction: (field, value) => dispatch(changeAction(field, value))
+    changeAction: (field, value, index) => dispatch(changeAction(field, value, index)),
+    updateProduct: index => dispatch(updateProduct(index))
   };
 }
 
 // Connect component
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(App);
-
