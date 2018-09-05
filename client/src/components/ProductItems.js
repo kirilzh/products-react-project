@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 class ProductItems extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleChange(field, value, index) {
     this.props.drill.changeAction(field, value, index);
   }

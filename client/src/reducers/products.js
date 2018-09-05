@@ -51,13 +51,20 @@ export default function products(state = initialState, action) {
         ...state,
         products: [
           ...state.products,
-          { name: action.name, price: action.price, currency: action.currency, editable: false }
+          {
+            name: action.name,
+            price: action.price,
+            currency: action.currency,
+            editable: false
+          }
         ]
       };
 
     case UPDATE_PRODUCT:
       const updateProductButton = [...state.products];
-      updateProductButton[action.index].editable = !updateProductButton[action.index].editable;
+      updateProductButton[action.index].editable = !updateProductButton[
+        action.index
+      ].editable;
 
       return {
         ...state,
@@ -69,7 +76,8 @@ export default function products(state = initialState, action) {
       updateProducts[action.index].name = action.name;
       updateProducts[action.index].price = action.price;
       updateProducts[action.index].currency = action.currency;
-      updateProducts[action.index].editable = !updateProducts[action.index].editable;
+      updateProducts[action.index].editable = !updateProducts[action.index]
+        .editable;
       return {
         ...state,
         products: updateProducts
@@ -103,8 +111,7 @@ export default function products(state = initialState, action) {
         state[action.field] = action.value;
         return {
           ...state
-        }
-
+        };
       } else {
         state.products[action.index][action.field] = action.value;
         return {
@@ -116,7 +123,7 @@ export default function products(state = initialState, action) {
       state.addProductFormVisible = true;
       return {
         ...state
-      }
+      };
     }
 
     default:

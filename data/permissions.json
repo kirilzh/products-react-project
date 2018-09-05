@@ -1,0 +1,16 @@
+{
+  "permissions": [
+    {
+      "name": "ADD",
+      "visible": true
+    },
+    {
+      "name": "DELETE",
+      "visible": true
+    },
+    {
+      "name": "UPDATE",
+      "visible": false
+    }
+  ]
+}

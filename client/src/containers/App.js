@@ -12,24 +12,10 @@ import {
   updateProduct,
   addProductFormToggle
 } from "../actions/index";
+
 import { connect } from "react-redux";
 
 class App extends Component {
-  // componentDidMount() {
-  //   this.callApi()
-  //     .then(res =>
-  //       this.setState({
-  //         response: res.permissions[0].name
-  //       })
-  //     )
-  //     .catch(err => console.log(err));
-  // }
-  //
-  // callApi = async () => {
-  //   const response = await fetch("/permissions");
-  //   return await response.json();
-  // };
-
   handleChange(field, value) {
     this.props.changeAction(field, value);
   }
@@ -38,14 +24,14 @@ class App extends Component {
     this.props.addProductFormToggle();
   }
 
-
-
   render() {
     const { addProduct, permissions, togglePermission } = this.props;
 
     return (
       <div>
-        <ProductTable drill={this.props} />
+        <div className="table">
+          <ProductTable drill={this.props} />
+        </div>
 
         {this.props.addProductFormVisible && (
           <div>
@@ -80,7 +66,11 @@ class App extends Component {
             )}
           </div>
         )}
-        <button onClick={() => this.showForm()}>Add</button>
+        <div className="mrk">
+          <a className="btn" onClick={() => this.showForm()}>
+            Add
+          </a>
+        </div>
         <hr />
         <h2>Enable/Disable Permissions</h2>
         <PermissionButtons
