@@ -16,6 +16,11 @@ import {
 import { connect } from "react-redux";
 
 class App extends Component {
+  componentDidMount() {
+    const { onRequestPermissions } = this.props;
+    onRequestPermissions();
+  }
+
   handleChange(field, value) {
     this.props.changeAction(field, value);
   }
@@ -29,54 +34,69 @@ class App extends Component {
 
     return (
       <div>
-        <div className="table">
-          <ProductTable drill={this.props} />
-        </div>
+        { permissions.fetching ? (
+          <p>fetching</p>
+        ) : (
+          <React.Fragment>
+            <div className="table">
+              <ProductTable drill={this.props} />
+            </div>
 
-        {this.props.addProductFormVisible && (
-          <div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Product name"
-              onChange={e => this.handleChange(e.target.name, e.target.value)}
-            />
-            <input
-              name="price"
-              placeholder="Price"
-              onChange={e => this.handleChange(e.target.name, e.target.value)}
-            />
-            <input
-              name="currency"
-              placeholder="Currency"
-              onChange={e => this.handleChange(e.target.name, e.target.value)}
-            />
-            {this.props.permissions[0].visible && (
-              <button
-                onClick={() =>
-                  addProduct(
-                    this.props.name,
-                    this.props.price,
-                    this.props.currency
-                  )
-                }
-              >
-                Save
-              </button>
+            {this.props.addProductFormVisible && (
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Product name"
+                  onChange={e =>
+                    this.handleChange(e.target.name, e.target.value)
+                  }
+                />
+                <input
+                  name="price"
+                  placeholder="Price"
+                  onChange={e =>
+                    this.handleChange(e.target.name, e.target.value)
+                  }
+                />
+                <input
+                  name="currency"
+                  placeholder="Currency"
+                  onChange={e =>
+                    this.handleChange(e.target.name, e.target.value)
+                  }
+                />
+                {this.props.permissions[0].visible && (
+                  <button
+                    onClick={() =>
+                      addProduct(
+                        this.props.name,
+                        this.props.price,
+                        this.props.currency
+                      )
+                    }
+                  >
+                    Save
+                  </button>
+                )}
+              </div>
             )}
-          </div>
+            <div className="mrk">
+              <a className="btn" onClick={() => this.showForm()}>
+                Add
+              </a>
+            </div>
+            <hr />
+            <h2>Enable/Disable Permissions</h2>
+            { permissions.data ? (
+              <PermissionButtons
+                permissions={permissions.data}
+                togglePermission={togglePermission}
+              />
+
+            ) : null }
+          </React.Fragment>
         )}
-        <div className="mrk">
-          <a className="btn" onClick={() => this.showForm()}>
-            Add
-          </a>
-        </div>
-        <hr />
-        <h2>Enable/Disable Permissions</h2>
-        <PermissionButtons
-          permissions={permissions}
-          togglePermission={togglePermission}
-        />
       </div>
     );
   }
@@ -96,8 +116,9 @@ App.propType = {
 // Map Redux state to component
 function mapStateToProps(state) {
   return {
-    products: state.products,
-    permissions: state.permissions,
+    products: state.productsReducer.products,
+
+    permissions: state.permissionsReducer,
     name: state.name,
     price: state.price,
     currency: state.currency,
@@ -117,7 +138,8 @@ function mapDispatchToProps(dispatch) {
     changeAction: (field, value, index) =>
       dispatch(changeAction(field, value, index)),
     updateProduct: index => dispatch(updateProduct(index)),
-    addProductFormToggle: () => dispatch(addProductFormToggle())
+    addProductFormToggle: () => dispatch(addProductFormToggle()),
+    onRequestPermissions: () => dispatch({ type: "PERMISSIONS_FETCH_REQUEST" })
   };
 }
 

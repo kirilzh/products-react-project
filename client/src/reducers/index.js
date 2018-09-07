@@ -1,5 +1,10 @@
-import products from "./products";
+import { combineReducers } from "redux";
+import productsReducer from "./productsReducer";
+import permissionsReducer from "./permissionsReducer";
 
-const rootReducer = products;
+const rootReducer = combineReducers({
+  productsReducer,
+  permissionsReducer
+});
 
 export default rootReducer;

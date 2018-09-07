@@ -1,5 +1,4 @@
-{
-  "permissions": [
+[
     {
       "name": "ADD",
       "visible": true
@@ -12,5 +11,4 @@
       "name": "UPDATE",
       "visible": false
     }
-  ]
-}
+]

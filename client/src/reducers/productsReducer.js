@@ -1,51 +1,65 @@
 import {
-  ADD_PRODUCT,
-  SAVE_PRODUCT,
-  DELETE_PRODUCT,
-  TOGGLE_BUTTON,
   CHANGE_ACTION,
-  UPDATE_PRODUCT,
   ADD_PRODUCT_FORM_TOGGLE
 } from "../constants/ActionTypes";
 
+// CRUD
+const ADD_PRODUCT = "ADD_PRODUCT";
+const SAVE_PRODUCT = "SAVE_PRODUCT";
+const DELETE_PRODUCT = "DELETE_PRODUCT";
+const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+
+// FETCHING FROM API
+const PRODUCT_FETCH_REQUEST = "PRODUCT_FETCH_REQUEST";
+const PRODUCT_FETCH_SUCCESS = "PRODUCT_FETCH_SUCCESS";
+const PRODUCT_FETCH_FAILURE = "PRODUCT_FETCH_FAILURE";
+
 const initialState = {
+  fetching: false,
+  data: null,
+  error: null,
   products: [
     {
-      name: "TV",
-      price: 1000,
-      currency: "USD",
-      editable: false
+      "name": "TV",
+      "price": 1000,
+      "currency": "USD"
     },
     {
-      name: "SSD",
-      price: 100,
-      currency: "USD",
-      editable: false
+      "name": "SSD",
+      "price": 100,
+      "currency": "USDServer"
     }
   ],
-  permissions: [
-    {
-      name: "ADD",
-      visible: true
-    },
-    {
-      name: "DELETE",
-      visible: false
-    },
-    {
-      name: "UPDATE",
-      visible: true
-    }
-  ],
-
   name: "",
   price: "",
   currency: "",
   addProductFormVisible: false
 };
 
-export default function products(state = initialState, action) {
+export default function productsReducer(state = initialState, action) {
   switch (action.type) {
+    case PRODUCT_FETCH_REQUEST:
+      return {
+        ...state,
+        fetching: true,
+        error: null
+      };
+
+    case PRODUCT_FETCH_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        data: action.products
+      };
+
+    case PRODUCT_FETCH_FAILURE:
+      return {
+        ...state,
+        fetching: false,
+        data: null,
+        error: action.error
+      };
+
     case ADD_PRODUCT:
       return {
         ...state,
@@ -89,21 +103,6 @@ export default function products(state = initialState, action) {
       return {
         ...state,
         products: deleteProducts
-      };
-    case TOGGLE_BUTTON:
-      const updatedPermission = state.permissions.map((permission, i) => {
-        if (i === action.index) {
-          return {
-            ...permission,
-            visible: !permission.visible
-          };
-        }
-        return permission;
-      });
-
-      return {
-        ...state,
-        permissions: updatedPermission
       };
 
     case CHANGE_ACTION:

@@ -1,5 +1,4 @@
-{
-  "products": [
+[
     {
       "name": "TV",
       "price": 1000,
@@ -10,5 +9,4 @@
       "price": 100,
       "currency": "USDServer"
     }
-  ]
-}
+]
