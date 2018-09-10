@@ -43,18 +43,3 @@ export const changeAction = (field, value, index) => ({
   index
 });
 
-// FETCHING PRODUCTS
-export const fetchProductsRequest = () => ({
-  type: "FETCH_PRODUCT_REQUEST"
-});
-
-export const fetchProductSuccess = response => ({
-  type: "FETCH_PRODUCT_SUCCESS",
-  response
-});
-
-export const fetchProductFailute = () => ({
-  type: "FETCH_PRODUCT_FAILURE",
-  error: "Oops"
-});
-

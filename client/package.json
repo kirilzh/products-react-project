@@ -5,6 +5,9 @@
   "proxy": {
     "/permissions": {
       "target": "http://localhost:5000"
+    },
+    "/products": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {

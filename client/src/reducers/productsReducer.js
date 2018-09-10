@@ -10,26 +10,14 @@ const DELETE_PRODUCT = "DELETE_PRODUCT";
 const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 // FETCHING FROM API
-const PRODUCT_FETCH_REQUEST = "PRODUCT_FETCH_REQUEST";
-const PRODUCT_FETCH_SUCCESS = "PRODUCT_FETCH_SUCCESS";
-const PRODUCT_FETCH_FAILURE = "PRODUCT_FETCH_FAILURE";
+const PRODUCTS_FETCH_REQUEST = "PRODUCTS_FETCH_REQUEST";
+const PRODUCTS_FETCH_SUCCESS = "PRODUCTS_FETCH_SUCCESS";
+const PRODUCTS_FETCH_FAILURE = "PRODUCTS_FETCH_FAILURE";
 
 const initialState = {
   fetching: false,
   data: null,
   error: null,
-  products: [
-    {
-      "name": "TV",
-      "price": 1000,
-      "currency": "USD"
-    },
-    {
-      "name": "SSD",
-      "price": 100,
-      "currency": "USDServer"
-    }
-  ],
   name: "",
   price: "",
   currency: "",
@@ -38,21 +26,21 @@ const initialState = {
 
 export default function productsReducer(state = initialState, action) {
   switch (action.type) {
-    case PRODUCT_FETCH_REQUEST:
+    case PRODUCTS_FETCH_REQUEST:
       return {
         ...state,
         fetching: true,
-        error: null
+        error: null,
       };
 
-    case PRODUCT_FETCH_SUCCESS:
+    case PRODUCTS_FETCH_SUCCESS:
       return {
         ...state,
         fetching: false,
         data: action.products
       };
 
-    case PRODUCT_FETCH_FAILURE:
+    case PRODUCTS_FETCH_FAILURE:
       return {
         ...state,
         fetching: false,

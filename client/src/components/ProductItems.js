@@ -7,12 +7,12 @@ class ProductItems extends Component {
 
   render() {
     const payload = this.props.drill;
-    console.log(payload);
+    console.log('productItems', payload);
 
-    if (payload.permissions.data === null) {
+    if (payload.permissions.data === null || payload.products.data === null) {
       return <tr><td>loading</td></tr>;
     } else {
-      return payload.products.map((product, i) => {
+      return payload.products.data.map((product, i) => {
         return (
           <tr key={i}>
             <td>{i}</td>
@@ -61,7 +61,7 @@ class ProductItems extends Component {
                 <button onClick={() => payload.deleteProduct(i)}>Delete</button>
               )}
               {payload.permissions.data[2].visible &&
-                ((!payload.products[i].editable && (
+                ((!payload.products.data[i].editable && (
                   <button onClick={() => payload.updateProduct(i)}>
                     Update
                   </button>

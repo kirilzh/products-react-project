@@ -17,8 +17,9 @@ import { connect } from "react-redux";
 
 class App extends Component {
   componentDidMount() {
-    const { onRequestPermissions } = this.props;
+    const { onRequestPermissions, onRequestProducts } = this.props;
     onRequestPermissions();
+    onRequestProducts();
   }
 
   handleChange(field, value) {
@@ -30,11 +31,12 @@ class App extends Component {
   }
 
   render() {
-    const { addProduct, permissions, togglePermission } = this.props;
+    const { products, addProduct, permissions, togglePermission } = this.props;
+    console.log(this.props);
 
     return (
       <div>
-        { permissions.fetching ? (
+        { permissions.fetching || products.fetching ? (
           <p>fetching</p>
         ) : (
           <React.Fragment>
@@ -82,9 +84,9 @@ class App extends Component {
               </div>
             )}
             <div className="mrk">
-              <a className="btn" onClick={() => this.showForm()}>
+              <button className="btn" onClick={() => this.showForm()}>
                 Add
-              </a>
+              </button>
             </div>
             <hr />
             <h2>Enable/Disable Permissions</h2>
@@ -116,8 +118,7 @@ App.propType = {
 // Map Redux state to component
 function mapStateToProps(state) {
   return {
-    products: state.productsReducer.products,
-
+    products: state.productsReducer,
     permissions: state.permissionsReducer,
     name: state.name,
     price: state.price,
@@ -139,7 +140,8 @@ function mapDispatchToProps(dispatch) {
       dispatch(changeAction(field, value, index)),
     updateProduct: index => dispatch(updateProduct(index)),
     addProductFormToggle: () => dispatch(addProductFormToggle()),
-    onRequestPermissions: () => dispatch({ type: "PERMISSIONS_FETCH_REQUEST" })
+    onRequestPermissions: () => dispatch({ type: "PERMISSIONS_FETCH_REQUEST" }),
+    onRequestProducts: () => dispatch({ type: "PRODUCTS_FETCH_REQUEST" })
   };
 }
 
