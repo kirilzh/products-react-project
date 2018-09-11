@@ -22,8 +22,17 @@ function deleteProduct(id) {
   })
 }
 
+function updateProduct(updatedProduct) {
+  return axios({
+    method: "put",
+    url: `/products/${updatedProduct.product.id}`,
+    data: updatedProduct
+  })
+}
+
 export const api = {
   fetchProducts,
   postProduct,
-  deleteProduct
+  deleteProduct,
+  updateProduct
 };

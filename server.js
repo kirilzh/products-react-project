@@ -37,7 +37,6 @@ app.get("/products", (req, res) => {
 
 // create a product
 app.post("/products", (req, res) => {
-  console.log(req.body);
   let product = new Product({
     name: req.body.name,
     price: req.body.price,
@@ -62,9 +61,9 @@ app.post("/products", (req, res) => {
 // update product
 app.put("/products/:id", (req, res) => {
   const id = req.params.id;
-  const object = req.body;
+  const object = req.body.product;
 
-  Product.findOneAndUpdate(id, object, {}, (err, object) => {
+  Product.findByIdAndUpdate(id, object, (err, object) => {
     if (err) res.json(err);
     res.json(object);
   });

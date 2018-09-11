@@ -1,11 +1,4 @@
-import {
-  CHANGE_ACTION,
-  ADD_PRODUCT_FORM_TOGGLE
-} from "../constants/ActionTypes";
-
-// CRUD
-const SAVE_PRODUCT = "SAVE_PRODUCT";
-const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const CHANGE_ACTION = "CHANGE_ACTION";
 
 // FETCHING FROM API
 const PRODUCTS_FETCH_REQUEST = "PRODUCTS_FETCH_REQUEST";
@@ -19,7 +12,6 @@ const initialState = {
   name: "",
   price: "",
   currency: "",
-  addProductFormVisible: false
 };
 
 export default function productsReducer(state = initialState, action) {
@@ -46,29 +38,6 @@ export default function productsReducer(state = initialState, action) {
         error: action.error
       };
 
-    case UPDATE_PRODUCT:
-      const updateProductButton = [...state.products];
-      updateProductButton[action.index].editable = !updateProductButton[
-        action.index
-      ].editable;
-
-      return {
-        ...state,
-        products: updateProductButton
-      };
-
-    case SAVE_PRODUCT:
-      const updateProducts = [...state.products];
-      updateProducts[action.index].name = action.name;
-      updateProducts[action.index].price = action.price;
-      updateProducts[action.index].currency = action.currency;
-      updateProducts[action.index].editable = !updateProducts[action.index]
-        .editable;
-      return {
-        ...state,
-        products: updateProducts
-      };
-
     case CHANGE_ACTION:
       if (action.index === undefined) {
         state[action.field] = action.value;
@@ -81,13 +50,6 @@ export default function productsReducer(state = initialState, action) {
           ...state
         };
       }
-
-    case ADD_PRODUCT_FORM_TOGGLE: {
-      state.addProductFormVisible = true;
-      return {
-        ...state
-      };
-    }
 
     default:
       return state;

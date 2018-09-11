@@ -49,3 +49,19 @@ function* deleteProduct(action) {
     console.log(error);
   }
 }
+
+// UPDATE PRODUCT
+export function* watchUpdateProduct() {
+  yield takeLatest("PRODUCT_UPDATE_REQUEST", updateProduct);
+}
+
+export function* updateProduct(action) {
+  console.log(action);
+  try {
+    const result = yield call(api.updateProduct, action)
+    if (result.status === 200)
+      yield put({ type: "PRODUCTS_FETCH_REQUEST" });
+  } catch (error) {
+    console.log(error);
+  }
+}

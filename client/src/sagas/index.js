@@ -3,7 +3,8 @@ import { permissionsWatcherSaga } from "./permissionsSaga";
 import {
   watchGetproducts,
   watchAddProduct,
-  watchDeleteProduct
+  watchDeleteProduct,
+  watchUpdateProduct
 } from "./productsSaga";
 
 export default function* rootSaga() {
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     permissionsWatcherSaga(),
     watchGetproducts(),
     watchAddProduct(),
-    watchDeleteProduct()
+    watchDeleteProduct(),
+    watchUpdateProduct()
   ]);
 }
