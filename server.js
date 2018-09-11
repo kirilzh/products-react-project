@@ -37,14 +37,14 @@ app.get("/products", (req, res) => {
 
 // create a product
 app.post("/products", (req, res) => {
+  console.log(req.body);
   let product = new Product({
-    id: req.body.id,
     name: req.body.name,
     price: req.body.price,
     currency: req.body.currency
   });
 
-  Product.findOne({ id: req.body.id }).then(existingProduct => {
+  Product.findOne({ name: req.body.name }).then(existingProduct => {
     if (existingProduct) res.send("already exists");
     else {
       product.save().then(
@@ -73,7 +73,6 @@ app.put("/products/:id", (req, res) => {
 // delete product
 app.delete("/products/:id", (req, res) => {
   Product.findOneAndDelete({ _id: req.params.id }, (err, doc) => {
-    console.log(err);
     if (err) res.json(err);
     res.json(doc);
   });

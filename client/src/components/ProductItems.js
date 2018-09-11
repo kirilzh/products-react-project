@@ -58,7 +58,7 @@ class ProductItems extends Component {
             )}
             <td>
               {payload.permissions.data[1].visible && (
-                <button onClick={() => payload.deleteProduct(i)}>Delete</button>
+                <button onClick={() => payload.onDeleteProduct(product._id)}>Delete</button>
               )}
               {payload.permissions.data[2].visible &&
                 ((!payload.products.data[i].editable && (

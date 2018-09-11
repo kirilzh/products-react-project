@@ -1,11 +1,4 @@
 // CRUD
-export const addProduct = (name, price, currency) => ({
-  type: "ADD_PRODUCT",
-  name,
-  price,
-  currency
-});
-
 export const updateProduct = index => ({
   type: "UPDATE_PRODUCT",
   index

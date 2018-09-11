@@ -4,9 +4,7 @@ import {
 } from "../constants/ActionTypes";
 
 // CRUD
-const ADD_PRODUCT = "ADD_PRODUCT";
 const SAVE_PRODUCT = "SAVE_PRODUCT";
-const DELETE_PRODUCT = "DELETE_PRODUCT";
 const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 // FETCHING FROM API
@@ -48,20 +46,6 @@ export default function productsReducer(state = initialState, action) {
         error: action.error
       };
 
-    case ADD_PRODUCT:
-      return {
-        ...state,
-        products: [
-          ...state.products,
-          {
-            name: action.name,
-            price: action.price,
-            currency: action.currency,
-            editable: false
-          }
-        ]
-      };
-
     case UPDATE_PRODUCT:
       const updateProductButton = [...state.products];
       updateProductButton[action.index].editable = !updateProductButton[
@@ -83,14 +67,6 @@ export default function productsReducer(state = initialState, action) {
       return {
         ...state,
         products: updateProducts
-      };
-
-    case DELETE_PRODUCT:
-      const deleteProducts = [...state.products];
-      deleteProducts.splice(action.index, 1);
-      return {
-        ...state,
-        products: deleteProducts
       };
 
     case CHANGE_ACTION:
