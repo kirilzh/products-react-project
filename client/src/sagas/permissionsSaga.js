@@ -2,7 +2,7 @@ import { takeLatest, call, put } from "redux-saga/effects";
 import axios from "axios";
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
-export function* watcherSaga() {
+export function* permissionsWatcherSaga() {
   yield takeLatest("PERMISSIONS_FETCH_REQUEST", workerSaga);
 }
 
@@ -20,7 +20,7 @@ function* workerSaga() {
     const response = yield call(fetchPermissions);
     const permissions = response.data;
 
-    //dispatch a success action to the store with the new permissions
+    // dispatch a success action to the store with the new permissions
     yield put({ type: "PERMISSIONS_FETCH_SUCCESS", permissions });
   } catch (error) {
     // dispatch failure action to the store with the error

@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import productsReducer from "./productsReducer";
-import permissionsReducer from "./permissionsReducer";
+import products from "./productsReducer";
+import permissions from "./permissionsReducer";
 
 const rootReducer = combineReducers({
-  productsReducer,
-  permissionsReducer
+  products,
+  permissions
 });
 
 export default rootReducer;
