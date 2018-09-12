@@ -57,6 +57,7 @@ class App extends Component {
                 +
               </div>
               <hr />
+              <p>Add Product</p>
               <input
                 type="text"
                 name="name"
@@ -115,9 +116,6 @@ function mapStateToProps(state) {
   return {
     products: state.products,
     permissions: state.permissions,
-    name: state.name,
-    price: state.price,
-    currency: state.currency,
     onDeleteProduct: state.onDeleteProduct,
     onUpdateProduct: state.onUpdateProduct
   };

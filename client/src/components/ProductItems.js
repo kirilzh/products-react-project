@@ -16,11 +16,11 @@ class ProductItems extends Component {
         return (
           <tr key={i}>
             <td>{i}</td>
-              <React.Fragment>
-                <td dangerouslySetInnerHTML={{ __html: product.name }} />
-                <td>{product.price}</td>
-                <td>{product.currency}</td>
-              </React.Fragment>
+            <React.Fragment>
+              <td dangerouslySetInnerHTML={{ __html: product.name }} />
+              <td>{product.price}</td>
+              <td>{product.currency}</td>
+            </React.Fragment>
             <td>
               {payload.permissions.data[1].visible && (
                 <button onClick={() => payload.onDeleteProduct(product._id)}>
@@ -28,18 +28,18 @@ class ProductItems extends Component {
                 </button>
               )}
               {payload.permissions.data[2].visible && (
-              <button
-                onClick={() =>
-                  payload.onUpdateProduct({
-                    id: product._id,
-                    name: payload.products.name,
-                    price: payload.products.price,
-                    currency: payload.products.currency
-                  })
-                }
-              >
-                Update
-              </button>
+                <button
+                  onClick={() =>
+                    payload.onUpdateProduct({
+                      id: product._id,
+                      name: payload.products.name,
+                      price: payload.products.price,
+                      currency: payload.products.currency
+                    })
+                  }
+                >
+                  Update
+                </button>
               )}
             </td>
           </tr>
