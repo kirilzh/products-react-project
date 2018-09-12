@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a58af01b-540e-4885-8677-4c5f49bce73d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/components/ProductItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ProductItems.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,6 +35,7 @@
           <entry key="gitignore" value="2" />
           <entry key="js" value="191" />
           <entry key="json" value="20" />
+          <entry key="md" value="1" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
@@ -44,7 +44,7 @@
           <entry key="CSS" value="10" />
           <entry key="JSON" value="20" />
           <entry key="JavaScript" value="185" />
-          <entry key="PLAIN_TEXT" value="8" />
+          <entry key="PLAIN_TEXT" value="9" />
           <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
@@ -53,6 +53,7 @@
           <entry key="css" value="680" />
           <entry key="js" value="43561" />
           <entry key="json" value="433" />
+          <entry key="md" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -60,7 +61,7 @@
           <entry key="CSS" value="680" />
           <entry key="JSON" value="433" />
           <entry key="JavaScript" value="43501" />
-          <entry key="PLAIN_TEXT" value="60" />
+          <entry key="PLAIN_TEXT" value="75" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -76,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/containers/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="271">
-              <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+              <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -88,16 +89,25 @@
         <entry file="file://$PROJECT_DIR$/client/src/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="445">
-              <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+              <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/.gitignore">
+        <entry file="file://$PROJECT_DIR$/client/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
+              <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -106,7 +116,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/sagas/api.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -115,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/components/ProductsTable.js">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
+              <caret column="26" selection-start-column="26" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -124,7 +134,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/sagas/productsSaga.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -136,7 +146,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/components/ProductItems.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-228">
-              <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -145,7 +155,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/sagas/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="41" lean-forward="true" selection-start-column="41" selection-end-column="41" />
+              <caret column="41" selection-start-column="41" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -195,7 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/reducers/addReducer.js" />
         <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/src/components/ProductList.js" />
         <option value="$PROJECT_DIR$/src/components/addProducts.js" />
@@ -246,6 +255,7 @@
         <option value="$PROJECT_DIR$/client/src/actions/index.js" />
         <option value="$PROJECT_DIR$/client/src/containers/App.js" />
         <option value="$PROJECT_DIR$/client/src/components/ProductItems.js" />
+        <option value="$PROJECT_DIR$/client/README.md" />
       </list>
     </option>
   </component>
@@ -264,7 +274,6 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/client/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
@@ -390,12 +399,12 @@
       <workItem from="1536127450117" duration="18931000" />
       <workItem from="1536299713474" duration="15698000" />
       <workItem from="1536491206016" duration="165000" />
-      <workItem from="1536491417055" duration="48211000" />
+      <workItem from="1536491417055" duration="48364000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166581000" />
+    <option name="totallyTimeSpent" value="166734000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -437,7 +446,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/actions/increase.js" />
     <entry file="file://$PROJECT_DIR$/src/reducers/addReducer.js" />
     <entry file="file://$PROJECT_DIR$/src/components/Products.js" />
     <entry file="file://$PROJECT_DIR$/src/store.js" />
@@ -606,28 +614,28 @@
     <entry file="file://$PROJECT_DIR$/client/src/components/ProductItems.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-228">
-          <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/ProductsTable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
+          <caret column="26" selection-start-column="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/sagas/api.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/sagas/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="41" lean-forward="true" selection-start-column="41" selection-end-column="41" />
+          <caret column="41" selection-start-column="41" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -641,7 +649,7 @@
     <entry file="file://$PROJECT_DIR$/client/src/sagas/productsSaga.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
           </folding>
@@ -651,7 +659,7 @@
     <entry file="file://$PROJECT_DIR$/client/src/containers/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
-          <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -661,14 +669,21 @@
     <entry file="file://$PROJECT_DIR$/client/src/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
-          <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+          <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/README.md">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
+          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
