@@ -14,14 +14,6 @@ mongoose.connect("mongodb://sguser:sguser.123@ds251332.mlab.com:51332/sg-task");
 const Product = mongoose.model("products");
 const Permission = mongoose.model("permissions");
 
-// Product.findOne({ name: "SSD" }).then(existingProduct => {
-//   if (existingProduct) {
-//     // console.log(existingProduct);
-//   } else {
-//     new Product({ name: "SSD", price: 200, currency: "BGN" }).save();
-//   }
-// });
-
 app.get("/permissions", (req, res) => {
   Permission.find({}, (err, permissions) => {
     return res.json(permissions);
