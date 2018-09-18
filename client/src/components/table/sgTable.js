@@ -2,20 +2,6 @@ import React from "react";
 import SGTableRow from "./sgTable-row";
 import SGTableCell from "./sgTable-cell";
 
-/*
-<table>
-  <tbody>
-  {dataRows.map((row, i) => (
-    <TableRow key={i}>
-      {Object.entries(row).forEach(([key, cell]) => (
-        <TableCell key={i}>{cell}</TableCell>
-      ))}
-    </TableRow>
-  ))}
-  </tbody>
-</table>
- */
-
 const SGTable = ({ columns, data, permissions }) => {
   if (data === null || columns === null) {
     return "spinner";
@@ -24,12 +10,6 @@ const SGTable = ({ columns, data, permissions }) => {
   const headerCells = columns.map((column, i) => {
     return <th key={i}>{column.label}</th>;
   });
-
-  data.map((element) => {
-    columns.map((column) => {
-      console.log(element['_id']);
-    })
-  })
 
   return (
     <table>
