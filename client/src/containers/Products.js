@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import ProductTable from "../components/ProductsTable";
-import PermissionButtons from "../components/PermissionButtons";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { changeAction, toggleButton } from "../actions/index";
-
-import TableBody from "../components/table/table-body";
-
-import { connect } from "react-redux";
-import TableRow from "../components/table/table-row";
-import TableCell from "../components/table/table-cell";
+import SGTable from "../components/table/sgTable";
+import PermissionButtons from "../components/PermissionButtons";
 
 class Products extends Component {
   componentDidMount() {
@@ -28,29 +23,84 @@ class Products extends Component {
       permissions,
       togglePermission,
       onPostProduct,
-      dataRows
     } = this.props;
-    console.log(this.props);
 
     // fetching products
     const fetching = permissions.fetching || products.fetching;
-
-    dataRows.map(row => console.log(row));
 
     if (fetching) return <p>fetching</p>;
 
     return (
       <React.Fragment>
-        <div className="table">
-          <ProductTable drill={this.props} />
-        </div>
+
+        <hr />
+        <SGTable
+          columns={[
+            { accessor: "_id", label: "id" },
+            {
+              accessor: "name",
+              style: { fontWeight: "bold", color: "red" },
+              label: "name"
+            },
+            { accessor: "price", style: { color: "blue" }, label: "price" },
+            { accessor: "currency", label: "currency" },
+            {
+              accessor: (permissions, id) => {
+                return permissions.map((permission, index) => {
+                  if (permission.name === "DELETE") {
+                    return (
+                      <button
+                        onClick={() => this.props.onDeleteProduct(id)}
+                        key={index}
+                      >
+                        {permission.name}
+                      </button>
+                    );
+                  }
+
+                  if (permission.name === "UPDATE") {
+                    return (
+                      <button
+                        key={index}
+                        onClick={() =>
+                          this.props.onUpdateProduct({
+                            id: id,
+                            name: products.name,
+                            price: products.price,
+                            currency: products.currency
+                          })
+                        }
+                      >
+                        {permission.name}
+                      </button>
+                    );
+                  }
+
+                  return null;
+                });
+              },
+              style: {},
+              label: "actions"
+            }
+          ]}
+          data={products.data}
+          permissions={permissions.data}
+        />
+
+        {/*<h2>Enable/Disable Permissions</h2>*/}
+        {/*{permissions.data ? (*/}
+          {/*<PermissionButtons*/}
+            {/*permissions={permissions.data}*/}
+            {/*togglePermission={togglePermission}*/}
+          {/*/>*/}
+        {/*) : null}*/}
 
         <button
           onClick={() => {
             document.querySelector(".bg-modal").style.display = "flex";
           }}
         >
-          PopUp
+          ADD
         </button>
         <div className="bg-modal">
           <div className="modal-content">
@@ -94,34 +144,8 @@ class Products extends Component {
             </button>
           </div>
         </div>
-
-        <hr />
-        <h2>Enable/Disable Permissions</h2>
-        {permissions.data ? (
-          <PermissionButtons
-            permissions={permissions.data}
-            togglePermission={togglePermission}
-          />
-        ) : null}
-
-        <hr />
-        {/*<h2>Updated with decoupling</h2>*/}
-        {/*<TableBody />*/}
-        {/*<hr />*/}
-
-        <h2>Updated with decoupling v2</h2>
-        <table>
-          <tbody>
-            {dataRows.map((row, i) => (
-              <TableRow key={i}>
-                {Object.values(row).map((cell, i) => (
-                  <TableCell key={i} heading={Object.keys(row)}>{cell}</TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </tbody>
-        </table>
       </React.Fragment>
+
     );
   }
 }
@@ -139,25 +163,7 @@ function mapStateToProps(state) {
     products: state.products,
     permissions: state.permissions,
     onDeleteProduct: state.onDeleteProduct,
-    onUpdateProduct: state.onUpdateProduct,
-    dataRows: [
-      {
-        id: 0,
-        name: "SSD",
-        price: 200,
-        currency: "BGN",
-        update: true,
-        delete: true
-      },
-      {
-        id: 1,
-        name: "HDD",
-        price: 100,
-        currency: "USD",
-        update: true,
-        delete: true
-      }
-    ]
+    onUpdateProduct: state.onUpdateProduct
   };
 }
 
