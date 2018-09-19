@@ -8,6 +8,9 @@
     },
     "/products": {
       "target": "http://localhost:5000"
+    },
+    "/validations": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {

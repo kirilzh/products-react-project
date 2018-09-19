@@ -56,7 +56,7 @@ class Products extends Component {
 
     // fetching products
     const fetching = permissions.fetching || products.fetching;
-
+    
     if (fetching) return <p>fetching</p>;
 
     return (

@@ -1,11 +1,56 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeAction } from "../actions/index";
+import FormInputField from '../components/FormInputField';
 
 class ProductForm extends Component {
+  componentDidMount() {
+    const { onRequestValidations } = this.props;
+    onRequestValidations();
+  }
+
+  checkExpression(regex, name, value) {
+    if (value.match(regex)) {
+      this.props.changeAction(name + "Error", false);
+      this.props.changeAction(name, value);
+    } else {
+      this.props.changeAction(name, "");
+      this.props.changeAction(name + "Error", true);
+    }
+  }
 
   handleChange = event => {
-    this.props.changeAction(event.target.name, event.target.value);
+    const products = this.props.products;
+    const value = event.target.value;
+    const name = event.target.name;
+
+    const arr = this.props.validations.data;
+    let result = {};
+    for (let i = 0; i < arr.length; i++) {
+      result[arr[i].name] = arr[i].expression;
+    }
+
+    switch (name) {
+      case "name":
+        this.checkExpression(result.name, name, value);
+        break;
+      case "price":
+        this.checkExpression(result.price, name, value);
+        break;
+      case "currency":
+        this.checkExpression(result.currency, name, value);
+        break;
+
+      default:
+        this.props.changeAction(name, "");
+        this.props.changeAction(name + "Error", true);
+    }
+
+    if (
+      !(products.nameError && products.priceError && products.currencyError)
+    ) {
+      document.getElementById("submitForm").disabled = false;
+    }
   };
 
   handlePost = () => {
@@ -13,7 +58,7 @@ class ProductForm extends Component {
       name: this.props.products.name,
       price: this.props.products.price,
       currency: this.props.products.currency
-    })
+    });
   };
 
   render() {
@@ -43,20 +88,42 @@ class ProductForm extends Component {
               name="name"
               placeholder="Product name"
               onChange={this.handleChange}
+              required
+              pattern={"[a-zA-Z]+"}
             />
+            {this.props.products.nameError && (
+              <label>{this.props.products.nameErrorMessage}</label>
+            )}
             <input
               name="price"
               placeholder="Price"
               onChange={this.handleChange}
+              required
+              pattern={"[0-9]+"}
             />
+            {this.props.products.priceError && (
+              <label>{this.props.products.priceErrorMessage}</label>
+            )}
             <input
               name="currency"
               placeholder="Currency"
               onChange={this.handleChange}
+              required
+              pattern={"[A-Z]+"}
             />
+            {this.props.products.currencyError && (
+              <label>{this.props.products.currencyErrorMessage}</label>
+            )}
+            <br />
 
             <button
+              id="submitForm"
               onClick={this.handlePost}
+              disabled={
+                this.props.products.nameError ||
+                this.props.products.priceError ||
+                this.props.products.currencyError
+              }
             >
               Add Product
             </button>
@@ -69,7 +136,8 @@ class ProductForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products
+    products: state.products,
+    validations: state.validations
   };
 }
 
@@ -78,7 +146,8 @@ function mapDispatchToProps(dispatch) {
     changeAction: (field, value, index) =>
       dispatch(changeAction(field, value, index)),
     onPostProduct: product =>
-      dispatch({ type: "PRODUCT_POST_REQUEST", product })
+      dispatch({ type: "PRODUCT_POST_REQUEST", product }),
+    onRequestValidations: () => dispatch({ type: "VALIDATIONS_FETCH_REQUEST" })
   };
 }
 

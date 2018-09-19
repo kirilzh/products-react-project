@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 require("./models/Product");
 require("./models/Permission");
+require("./models/Validation");
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,11 +14,20 @@ mongoose.connect("mongodb://sguser:sguser.123@ds251332.mlab.com:51332/sg-task");
 
 const Product = mongoose.model("products");
 const Permission = mongoose.model("permissions");
+const Validation = mongoose.model("validations");
 
+// get all permissions
 app.get("/permissions", (req, res) => {
   Permission.find({}, (err, permissions) => {
     return res.json(permissions);
   });
+});
+
+// get all validations
+app.get("/validations", (req, res) => {
+  Validation.find({}, (err, validations) => {
+    return res.json(validations);
+  })
 });
 
 // get all products
@@ -69,9 +79,5 @@ app.delete("/products/:id", (req, res) => {
   });
 });
 
-app.get("/validation", (req, res) => {
-  res.header("Content-Type", "application/json");
-  res.sendFile(path.join(__dirname, "data/validation.json"));
-});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

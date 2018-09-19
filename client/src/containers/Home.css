@@ -48,3 +48,17 @@ nav a:hover {
   background-size: cover;
   height: 100%;
 }
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid green;
+}
+
+label {
+  display: inline-block;
+  text-align: right;
+  width: 140px;
+}

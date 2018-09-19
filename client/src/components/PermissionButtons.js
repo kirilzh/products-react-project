@@ -5,6 +5,7 @@ const PermissionButtons = ({ permissions, togglePermission }) => {
     return (
       <button key={i} onClick={() => togglePermission(permission, i)}>
         {permission.name}
+        <span></span>
       </button>
     );
   });
