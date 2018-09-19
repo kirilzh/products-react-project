@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeAction } from "../actions/index";
-import FormInputField from '../components/FormInputField';
 
 class ProductForm extends Component {
   componentDidMount() {
@@ -10,12 +9,14 @@ class ProductForm extends Component {
   }
 
   checkExpression(regex, name, value) {
+    console.log(value.match(regex));
     if (value.match(regex)) {
       this.props.changeAction(name + "Error", false);
       this.props.changeAction(name, value);
-    } else {
-      this.props.changeAction(name, "");
+    }
+    if (!value.match(regex)) {
       this.props.changeAction(name + "Error", true);
+      this.props.changeAction(name, "");
     }
   }
 
@@ -40,10 +41,6 @@ class ProductForm extends Component {
       case "currency":
         this.checkExpression(result.currency, name, value);
         break;
-
-      default:
-        this.props.changeAction(name, "");
-        this.props.changeAction(name + "Error", true);
     }
 
     if (
@@ -65,6 +62,7 @@ class ProductForm extends Component {
     return (
       <React.Fragment>
         <button
+          id="addButton"
           onClick={() => {
             document.querySelector(".bg-modal").style.display = "flex";
           }}

@@ -17,10 +17,7 @@ class Products extends Component {
     return permissions.map((permission, index) => {
       if (permission.visible && permission.name === "DELETE") {
         return (
-          <button
-            onClick={() => this.props.onDeleteProduct(id)}
-            key={index}
-          >
+          <button onClick={() => this.props.onDeleteProduct(id)} key={index}>
             {permission.name}
           </button>
         );
@@ -48,15 +45,9 @@ class Products extends Component {
   };
 
   render() {
-    const {
-      products,
-      permissions,
-      onPostProduct
-    } = this.props;
+    const { products, permissions, onPostProduct } = this.props;
 
-    // fetching products
     const fetching = permissions.fetching || products.fetching;
-    
     if (fetching) return <p>fetching</p>;
 
     return (

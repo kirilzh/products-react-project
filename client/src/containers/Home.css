@@ -62,3 +62,10 @@ label {
   text-align: right;
   width: 140px;
 }
+
+button {
+  margin: 1px;
+  padding: 3px 2px;
+}
+
+

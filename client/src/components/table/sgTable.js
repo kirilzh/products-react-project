@@ -4,7 +4,7 @@ import SGTableCell from "./sgTable-cell";
 
 const SGTable = ({ columns, data, permissions }) => {
   if (data === null || columns === null) {
-    return "spinner";
+    return "spinners";
   }
 
   const headerCells = columns.map((column, i) => {
