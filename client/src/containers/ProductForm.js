@@ -67,12 +67,12 @@ class ProductForm extends Component {
 
               <button
                 id="submitForm"
-                onClick={this.handlePost}
                 disabled={
-                  this.props.products.nameError ||
-                  this.props.products.priceError ||
-                  this.props.products.currencyError
+                  this.props.products.name === "" ||
+                  this.props.products.price === "" ||
+                  this.props.products.currency === ""
                 }
+                onClick={this.handlePost}
               >
                 Add Product
               </button>

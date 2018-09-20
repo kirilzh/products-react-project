@@ -11,13 +11,7 @@ const initialState = {
   error: null,
   name: "",
   price: "",
-  currency: "",
-  nameError: null,
-  priceError: null,
-  currencyError: null,
-  nameErrorMessage: "Name must match /[a-zA-Z]+/",
-  priceErrorMessage: "Name must match /[0-9]+/",
-  currencyErrorMessage: "Name must match /[A-Z]+/"
+  currency: ""
 };
 
 export default function productsReducer(state = initialState, action) {

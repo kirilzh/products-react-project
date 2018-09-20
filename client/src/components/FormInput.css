@@ -26,13 +26,13 @@ input:focus ~ .floatingLabel, input:valid ~ .floatingLabel {
   font-size:14px;
 }
 
-input:invalid {
-  background-color: mistyrose;
-}
+/*input:invalid {*/
+  /*background-color: mistyrose;*/
+/*}*/
 
-input:valid {
-  background-color: #c1f5d6;
-}
+/*input:valid {*/
+  /*background-color: #c1f5d6;*/
+/*}*/
 
 .floatingLabel {
   color:#999;
