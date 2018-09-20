@@ -1,6 +1,5 @@
 body {
-  background-color: antiquewhite;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 header {
@@ -8,7 +7,7 @@ header {
 }
 
 header::after {
-  content: '';
+  content: "";
   display: table;
   clear: both;
 }
@@ -40,32 +39,7 @@ nav a:hover {
   color: #000;
 }
 
-.container {
-  width: 90%;
-  margin: 0 auto;
-
-  background:url("https://damt7w3yoa0t2.cloudfront.net/img/home/home-bg-22197c9.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-input:invalid {
-  border: 2px solid red;
-}
-
-input:valid {
-  border: 2px solid green;
-}
-
-label {
-  display: inline-block;
-  text-align: right;
-  width: 140px;
-}
-
 button {
   margin: 1px;
   padding: 3px 2px;
 }
-
-

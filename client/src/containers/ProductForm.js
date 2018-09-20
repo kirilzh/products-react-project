@@ -1,55 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeAction } from "../actions/index";
+import FormInput from "../components/FormInput";
 
 class ProductForm extends Component {
   componentDidMount() {
     const { onRequestValidations } = this.props;
     onRequestValidations();
   }
-
-  checkExpression(regex, name, value) {
-    console.log(value.match(regex));
-    if (value.match(regex)) {
-      this.props.changeAction(name + "Error", false);
-      this.props.changeAction(name, value);
-    }
-    if (!value.match(regex)) {
-      this.props.changeAction(name + "Error", true);
-      this.props.changeAction(name, "");
-    }
-  }
-
-  handleChange = event => {
-    const products = this.props.products;
-    const value = event.target.value;
-    const name = event.target.name;
-
-    const arr = this.props.validations.data;
-    let result = {};
-    for (let i = 0; i < arr.length; i++) {
-      result[arr[i].name] = arr[i].expression;
-    }
-
-    switch (name) {
-      case "name":
-        this.checkExpression(result.name, name, value);
-        break;
-      case "price":
-        this.checkExpression(result.price, name, value);
-        break;
-      case "currency":
-        this.checkExpression(result.currency, name, value);
-        break;
-    }
-
-    if (
-      !(products.nameError && products.priceError && products.currencyError)
-    ) {
-      document.getElementById("submitForm").disabled = false;
-    }
-  };
-
   handlePost = () => {
     this.props.onPostProduct({
       name: this.props.products.name,
@@ -80,51 +38,46 @@ class ProductForm extends Component {
               +
             </div>
             <hr />
-            <p>Add Product</p>
-            <input
-              type="text"
-              name="name"
-              placeholder="Product name"
-              onChange={this.handleChange}
-              required
-              pattern={"[a-zA-Z]+"}
-            />
-            {this.props.products.nameError && (
-              <label>{this.props.products.nameErrorMessage}</label>
-            )}
-            <input
-              name="price"
-              placeholder="Price"
-              onChange={this.handleChange}
-              required
-              pattern={"[0-9]+"}
-            />
-            {this.props.products.priceError && (
-              <label>{this.props.products.priceErrorMessage}</label>
-            )}
-            <input
-              name="currency"
-              placeholder="Currency"
-              onChange={this.handleChange}
-              required
-              pattern={"[A-Z]+"}
-            />
-            {this.props.products.currencyError && (
-              <label>{this.props.products.currencyErrorMessage}</label>
-            )}
-            <br />
+            <form>
+              <h1>Add Product</h1>
+              <FormInput
+                name="name"
+                floatingLabel="Name"
+                errorLabel="Please enter a valid product name matching /^[a-zA-Z]+$/"
+                errorName="nameError"
+                error={this.props.products.nameError}
+                regex="^[a-zA-Z]+$"
+              />
+              <FormInput
+                name="price"
+                floatingLabel="Price"
+                errorLabel="Please enter a valid product name matching /^[0-\.9]+$/"
+                errorName="priceError"
+                error={this.props.products.priceError}
+                regex="^[0-9\.]+$"
+              />
+              <FormInput
+                name="currency"
+                floatingLabel="Currency"
+                errorLabel="Please enter a valid product name matching /^[A-Z]+$/"
+                errorName="currencyError"
+                error={this.props.products.currencyError}
+                regex="^[A-Z]+$"
+              />
 
-            <button
-              id="submitForm"
-              onClick={this.handlePost}
-              disabled={
-                this.props.products.nameError ||
-                this.props.products.priceError ||
-                this.props.products.currencyError
-              }
-            >
-              Add Product
-            </button>
+              <button
+                id="submitForm"
+                onClick={this.handlePost}
+                disabled={
+                  this.props.products.nameError ||
+                  this.props.products.priceError ||
+                  this.props.products.currencyError
+                }
+              >
+                Add Product
+              </button>
+            </form>
+            <br />
           </div>
         </div>
       </React.Fragment>
