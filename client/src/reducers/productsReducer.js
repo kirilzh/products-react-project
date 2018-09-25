@@ -31,7 +31,6 @@ const initialState = {
 };
 
 export default function productsReducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case PRODUCTS_FETCH_REQUEST:
       return {

@@ -26,9 +26,7 @@ class ProductForm extends Component {
     if (this.props.validations.data === null) {
       return "fetching";
     }
-
-    const products = this.props.products.temporary;
-
+    
     return (
       <React.Fragment>
         <button
@@ -65,7 +63,7 @@ class ProductForm extends Component {
                 floatingLabel="Price"
                 errorLabel="Please enter a valid product name matching /^[0-\.9]+$/"
                 errorName="priceError"
-                error={this.props.products.priceError}
+                error={this.props.products.temporary.price.valid}
                 regex={this.props.validations.data.price}
               />
               <FormInput
@@ -73,13 +71,15 @@ class ProductForm extends Component {
                 floatingLabel="Currency"
                 errorLabel="Please enter a valid product name matching /^[A-Z]+$/"
                 errorName="currencyError"
-                error={this.props.products.currencyError}
+                error={this.props.products.temporary.currency.valid}
                 regex={this.props.validations.data.currency}
               />
 
               <button
                 id="submitForm"
-                disabled={Object.values(this.props.products.temporary.error).find(val => val)}
+                disabled={Object.values(
+                  this.props.products.temporary.error
+                ).find(val => val)}
                 onClick={this.handlePost}
               >
                 Add Product
