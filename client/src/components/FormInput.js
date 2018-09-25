@@ -52,6 +52,7 @@ class FormInput extends Component {
               this.handleChange(event, this.props.regex, this.props.errorName)
             }
             pattern={this.props.regex}
+            autoComplete="off"
           />
           <label className="floatingLabel">{this.props.floatingLabel}</label>
           <span className={"focus-bg"} />

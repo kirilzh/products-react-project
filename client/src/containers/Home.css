@@ -1,19 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
 body {
-  font-family: "Titillium Web", sans-serif;
+  font-family: "Lato", sans-serif;
+}
+img {
+  max-width: 100%;
+}
+
+.full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 header {
   background: #55d6aa;
 }
 
+nav {
+  text-align: center;
+}
+
 header::after {
   content: "";
   display: table;
   clear: both;
-}
-
-nav {
-  float: right;
 }
 
 nav ul {
@@ -24,8 +38,7 @@ nav ul {
 
 nav li {
   display: inline-block;
-  margin-left: 70px;
-  padding-top: 25px;
+  padding:5px 20px;
 }
 
 nav a {

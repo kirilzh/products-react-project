@@ -17,6 +17,7 @@ class ProductForm extends Component {
   };
 
   render() {
+    const products = this.props.products;
     return (
       <React.Fragment>
         <button
@@ -68,9 +69,12 @@ class ProductForm extends Component {
               <button
                 id="submitForm"
                 disabled={
-                  this.props.products.name === "" ||
-                  this.props.products.price === "" ||
-                  this.props.products.currency === ""
+                  products.name === "" ||
+                  products.nameError === true ||
+                  products.price === "" ||
+                  products.priceError === true ||
+                  products.currency === "" ||
+                  products.currencyError === true
                 }
                 onClick={this.handlePost}
               >
