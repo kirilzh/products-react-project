@@ -29,13 +29,13 @@ class FormInput extends Component {
     const value = event.target.value;
     console.log(name);
 
-    this.props.changeAction("value", value);
+    this.props.changeAction(event.target.name, value);
 
     if (value.match(regex)) {
-      this.props.changeAction("valid", false);
+      this.props.changeAction(event.target.name, true);
       this.setState({ valid: true, backgroundColor: styleValid });
     } else {
-      this.props.changeAction(name, true);
+      this.props.changeAction(event.target.name, false);
       this.setState({ valid: false, backgroundColor: styleError });
     }
   }

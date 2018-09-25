@@ -9,9 +9,6 @@ const initialState = {
   fetching: false,
   data: null,
   error: null,
-  name: "",
-  price: "",
-  currency: "",
   temporary: {
     name: {
       value: "",
@@ -24,6 +21,11 @@ const initialState = {
     currency: {
       value: "",
       valid: false
+    },
+    error: {
+      name: true,
+      price: true,
+      currency: true
     }
   }
 };
@@ -54,8 +56,18 @@ export default function productsReducer(state = initialState, action) {
       };
 
     case CHANGE_ACTION:
-      state.temporary.name[action.field] = action.value;
+      if (action.value === true || action.value === false) {
+        state.temporary[action.field].valid = action.value;
+        if (action.value === false) {
+          state.temporary.error[action.field] = true;
+        }
 
+        if (action.value === true) {
+          delete state.temporary.error[action.field];
+        }
+      } else {
+        state.temporary[action.field].value = action.value;
+      }
       return {
         ...state
       };

@@ -4,6 +4,11 @@ import { changeAction } from "../actions/index";
 import FormInput from "../components/FormInput";
 
 class ProductForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
   componentDidMount() {
     const { onRequestValidations } = this.props;
     onRequestValidations();
@@ -11,9 +16,9 @@ class ProductForm extends Component {
 
   handlePost = () => {
     this.props.onPostProduct({
-      name: this.props.products.name,
-      price: this.props.products.price,
-      currency: this.props.products.currency
+      name: this.props.products.temporary.name.value,
+      price: this.props.products.temporary.price.value,
+      currency: this.props.products.temporary.currency.value
     });
   };
 
@@ -22,8 +27,7 @@ class ProductForm extends Component {
       return "fetching";
     }
 
-    const products = this.props.products;
-    let disabled = true;
+    const products = this.props.products.temporary;
 
     return (
       <React.Fragment>
@@ -75,7 +79,9 @@ class ProductForm extends Component {
 
               <button
                 id="submitForm"
-                disabled={this.props.products.temporary.error}
+                disabled={
+                  Object.keys(this.props.products.temporary.error).length !== 0
+                }
                 onClick={this.handlePost}
               >
                 Add Product
@@ -98,8 +104,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeAction: (field, value) =>
-      dispatch(changeAction(field, value)),
+    changeAction: (field, value) => dispatch(changeAction(field, value)),
     onPostProduct: product =>
       dispatch({ type: "PRODUCT_POST_REQUEST", product }),
     onRequestValidations: () => dispatch({ type: "VALIDATIONS_FETCH_REQUEST" })
