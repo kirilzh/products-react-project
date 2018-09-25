@@ -27,11 +27,12 @@ class FormInput extends Component {
 
   handleChange(event, regex, name) {
     const value = event.target.value;
+    console.log(name);
 
-    this.props.changeAction(event.target.name, value);
+    this.props.changeAction("value", value);
 
     if (value.match(regex)) {
-      this.props.changeAction(name, false);
+      this.props.changeAction("valid", false);
       this.setState({ valid: true, backgroundColor: styleValid });
     } else {
       this.props.changeAction(name, true);
@@ -52,6 +53,7 @@ class FormInput extends Component {
               this.handleChange(event, this.props.regex, this.props.errorName)
             }
             pattern={this.props.regex}
+            autoComplete="off"
           />
           <label className="floatingLabel">{this.props.floatingLabel}</label>
           <span className={"focus-bg"} />
@@ -72,8 +74,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeAction: (field, value, index) => {
-      dispatch(changeAction(field, value, index));
+    changeAction: (field, value) => {
+      dispatch(changeAction(field, value));
     }
   };
 }

@@ -16,7 +16,15 @@ function fetchValidations() {
 function* workerSaga() {
   try {
     const response = yield call(fetchValidations);
-    const validations = response.data;
+    let validations = response.data;
+
+    let result = {};
+    for (let i = 0; i < validations.length; i++) {
+      result[validations[i].name] = validations[i].expression;
+    }
+
+    validations = result;
+
 
     // dispatch a success action to the store with the new permissions
     yield put({ type: "VALIDATIONS_FETCH_SUCCESS", validations });

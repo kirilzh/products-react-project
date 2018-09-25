@@ -11,16 +11,31 @@ const initialState = {
   error: null,
   name: "",
   price: "",
-  currency: ""
+  currency: "",
+  temporary: {
+    name: {
+      value: "",
+      valid: false
+    },
+    price: {
+      value: "",
+      valid: false
+    },
+    currency: {
+      value: "",
+      valid: false
+    }
+  }
 };
 
 export default function productsReducer(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case PRODUCTS_FETCH_REQUEST:
       return {
         ...state,
         fetching: true,
-        error: null,
+        error: null
       };
 
     case PRODUCTS_FETCH_SUCCESS:
@@ -39,17 +54,11 @@ export default function productsReducer(state = initialState, action) {
       };
 
     case CHANGE_ACTION:
-      if (action.index === undefined) {
-        state[action.field] = action.value;
-        return {
-          ...state
-        };
-      } else {
-        state.products[action.index][action.field] = action.value;
-        return {
-          ...state
-        };
-      }
+      state.temporary.name[action.field] = action.value;
+
+      return {
+        ...state
+      };
 
     default:
       return state;

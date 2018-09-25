@@ -8,6 +8,7 @@ class ProductForm extends Component {
     const { onRequestValidations } = this.props;
     onRequestValidations();
   }
+
   handlePost = () => {
     this.props.onPostProduct({
       name: this.props.products.name,
@@ -17,6 +18,13 @@ class ProductForm extends Component {
   };
 
   render() {
+    if (this.props.validations.data === null) {
+      return "fetching";
+    }
+
+    const products = this.props.products;
+    let disabled = true;
+
     return (
       <React.Fragment>
         <button
@@ -46,7 +54,7 @@ class ProductForm extends Component {
                 errorLabel="Please enter a valid product name matching /^[a-zA-Z]+$/"
                 errorName="nameError"
                 error={this.props.products.nameError}
-                regex="^[a-zA-Z]+$"
+                regex={this.props.validations.data.name}
               />
               <FormInput
                 name="price"
@@ -54,7 +62,7 @@ class ProductForm extends Component {
                 errorLabel="Please enter a valid product name matching /^[0-\.9]+$/"
                 errorName="priceError"
                 error={this.props.products.priceError}
-                regex="^[0-9\.]+$"
+                regex={this.props.validations.data.price}
               />
               <FormInput
                 name="currency"
@@ -62,16 +70,12 @@ class ProductForm extends Component {
                 errorLabel="Please enter a valid product name matching /^[A-Z]+$/"
                 errorName="currencyError"
                 error={this.props.products.currencyError}
-                regex="^[A-Z]+$"
+                regex={this.props.validations.data.currency}
               />
 
               <button
                 id="submitForm"
-                disabled={
-                  this.props.products.name === "" ||
-                  this.props.products.price === "" ||
-                  this.props.products.currency === ""
-                }
+                disabled={this.props.products.temporary.error}
                 onClick={this.handlePost}
               >
                 Add Product
@@ -94,8 +98,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeAction: (field, value, index) =>
-      dispatch(changeAction(field, value, index)),
+    changeAction: (field, value) =>
+      dispatch(changeAction(field, value)),
     onPostProduct: product =>
       dispatch({ type: "PRODUCT_POST_REQUEST", product }),
     onRequestValidations: () => dispatch({ type: "VALIDATIONS_FETCH_REQUEST" })
