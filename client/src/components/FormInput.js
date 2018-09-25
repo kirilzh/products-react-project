@@ -20,23 +20,20 @@ class FormInput extends Component {
     super(props);
 
     this.state = {
-      valid: null,
       backgroundColor: styleDefault
     };
   }
 
-  handleChange(event, regex, name) {
+  handleChange(event, regex) {
     const value = event.target.value;
-    console.log(name);
-
-    this.props.changeAction(event.target.name, value);
+    //this.props.changeAction(event.target.name, value);
 
     if (value.match(regex)) {
-      this.props.changeAction(event.target.name, true);
-      this.setState({ valid: true, backgroundColor: styleValid });
+      this.props.changeAction(event.target.name, value, false);
+      this.setState({ backgroundColor: styleValid });
     } else {
-      this.props.changeAction(event.target.name, false);
-      this.setState({ valid: false, backgroundColor: styleError });
+      this.props.changeAction(event.target.name, value, true);
+      this.setState({ backgroundColor: styleError });
     }
   }
 
@@ -57,7 +54,7 @@ class FormInput extends Component {
           />
           <label className="floatingLabel">{this.props.floatingLabel}</label>
           <span className={"focus-bg"} />
-          {this.props.error && (
+          {this.props.products.temporary[this.props.name].valid && (
             <label className="errorLabel">{this.props.errorLabel}</label>
           )}
         </div>
@@ -74,8 +71,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeAction: (field, value) => {
-      dispatch(changeAction(field, value));
+    changeAction: (field, value, valid) => {
+      dispatch(changeAction(field, value, valid));
     }
   };
 }

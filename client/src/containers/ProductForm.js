@@ -57,7 +57,7 @@ class ProductForm extends Component {
                 floatingLabel="Name"
                 errorLabel="Please enter a valid product name matching /^[a-zA-Z]+$/"
                 errorName="nameError"
-                error={this.props.products.nameError}
+                error={this.props.products.temporary.name.valid}
                 regex={this.props.validations.data.name}
               />
               <FormInput
@@ -79,9 +79,7 @@ class ProductForm extends Component {
 
               <button
                 id="submitForm"
-                disabled={
-                  Object.keys(this.props.products.temporary.error).length !== 0
-                }
+                disabled={Object.values(this.props.products.temporary.error).find(val => val)}
                 onClick={this.handlePost}
               >
                 Add Product

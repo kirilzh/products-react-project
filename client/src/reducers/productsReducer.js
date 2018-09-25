@@ -56,20 +56,19 @@ export default function productsReducer(state = initialState, action) {
       };
 
     case CHANGE_ACTION:
-      if (action.value === true || action.value === false) {
-        state.temporary[action.field].valid = action.value;
-        if (action.value === false) {
-          state.temporary.error[action.field] = true;
-        }
-
-        if (action.value === true) {
-          delete state.temporary.error[action.field];
-        }
-      } else {
-        state.temporary[action.field].value = action.value;
-      }
       return {
-        ...state
+        ...state,
+        temporary: {
+          ...state.temporary,
+          [action.field]: {
+            value: action.value,
+            valid: action.valid
+          },
+          error: {
+            ...state.temporary.error,
+            [action.field]: action.valid
+          }
+        }
       };
 
     default:
