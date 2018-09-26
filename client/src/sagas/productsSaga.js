@@ -17,6 +17,7 @@ function* getProducts() {
   } catch (error) {
     // dispatch a failure action to the store with the error
     yield put({ type: "PRODUCTS_FETCH_FAILURE ", error });
+    setInterval(yield put({ type: "PRODUCTS_FETCH_REQUEST" }), 1000);
   }
 }
 

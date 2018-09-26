@@ -22,11 +22,15 @@ class ProductForm extends Component {
     });
   };
 
+  renderLoading() {
+    return <div>Loading...</div>;
+  }
+
   render() {
     if (this.props.validations.data === null) {
-      return "fetching";
+      return this.renderLoading();
     }
-    
+
     return (
       <React.Fragment>
         <button

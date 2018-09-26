@@ -31,5 +31,6 @@ function* workerSaga() {
   } catch (error) {
     // dispatch failure action to the store with the error
     yield put({ type: "VALIDATIONS_FETCH_FAILURE", error });
+    yield put({ type: "VALIDATIONS_FETCH_REQUEST" });
   }
 }

@@ -44,11 +44,18 @@ class Products extends Component {
     });
   };
 
+  renderLoading() {
+    return <div>Loading...</div>;
+  }
+
   render() {
     const { products, permissions, onPostProduct } = this.props;
 
     const fetching = permissions.fetching || products.fetching;
-    if (fetching) return <p>fetching</p>;
+
+    if (fetching) {
+      return this.renderLoading();
+    }
 
     return (
       <React.Fragment>
