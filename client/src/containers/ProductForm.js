@@ -4,20 +4,33 @@ import { changeAction } from "../actions/index";
 import FormInput from "../components/FormInput";
 
 class ProductForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
   componentDidMount() {
     const { onRequestValidations } = this.props;
     onRequestValidations();
   }
+
   handlePost = () => {
     this.props.onPostProduct({
-      name: this.props.products.name,
-      price: this.props.products.price,
-      currency: this.props.products.currency
+      name: this.props.products.temporary.name.value,
+      price: this.props.products.temporary.price.value,
+      currency: this.props.products.temporary.currency.value
     });
   };
 
+  renderLoading() {
+    return <div>Loading...</div>;
+  }
+
   render() {
-    const products = this.props.products;
+    if (this.props.validations.data === null) {
+      return this.renderLoading();
+    }
+
     return (
       <React.Fragment>
         <button
@@ -46,36 +59,31 @@ class ProductForm extends Component {
                 floatingLabel="Name"
                 errorLabel="Please enter a valid product name matching /^[a-zA-Z]+$/"
                 errorName="nameError"
-                error={this.props.products.nameError}
-                regex="^[a-zA-Z]+$"
+                error={this.props.products.temporary.name.valid}
+                regex={this.props.validations.data.name}
               />
               <FormInput
                 name="price"
                 floatingLabel="Price"
                 errorLabel="Please enter a valid product name matching /^[0-\.9]+$/"
                 errorName="priceError"
-                error={this.props.products.priceError}
-                regex="^[0-9\.]+$"
+                error={this.props.products.temporary.price.valid}
+                regex={this.props.validations.data.price}
               />
               <FormInput
                 name="currency"
                 floatingLabel="Currency"
                 errorLabel="Please enter a valid product name matching /^[A-Z]+$/"
                 errorName="currencyError"
-                error={this.props.products.currencyError}
-                regex="^[A-Z]+$"
+                error={this.props.products.temporary.currency.valid}
+                regex={this.props.validations.data.currency}
               />
 
               <button
                 id="submitForm"
-                disabled={
-                  products.name === "" ||
-                  products.nameError === true ||
-                  products.price === "" ||
-                  products.priceError === true ||
-                  products.currency === "" ||
-                  products.currencyError === true
-                }
+                disabled={Object.values(
+                  this.props.products.temporary.error
+                ).find(val => val)}
                 onClick={this.handlePost}
               >
                 Add Product
@@ -98,8 +106,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeAction: (field, value, index) =>
-      dispatch(changeAction(field, value, index)),
+    changeAction: (field, value) => dispatch(changeAction(field, value)),
     onPostProduct: product =>
       dispatch({ type: "PRODUCT_POST_REQUEST", product }),
     onRequestValidations: () => dispatch({ type: "VALIDATIONS_FETCH_REQUEST" })

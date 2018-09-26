@@ -1,4 +1,5 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import axios from 'axios';
 
 export function* validationsWatcherSaga() {
@@ -16,12 +17,22 @@ function fetchValidations() {
 function* workerSaga() {
   try {
     const response = yield call(fetchValidations);
-    const validations = response.data;
+    let validations = response.data;
+
+    let result = {};
+    for (let i = 0; i < validations.length; i++) {
+      result[validations[i].name] = validations[i].expression;
+    }
+
+    validations = result;
+
 
     // dispatch a success action to the store with the new permissions
     yield put({ type: "VALIDATIONS_FETCH_SUCCESS", validations });
   } catch (error) {
     // dispatch failure action to the store with the error
     yield put({ type: "VALIDATIONS_FETCH_FAILURE", error });
+    yield delay(3000);
+    yield put({ type: "VALIDATIONS_FETCH_REQUEST" });
   }
 }

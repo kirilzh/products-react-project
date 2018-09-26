@@ -9,9 +9,25 @@ const initialState = {
   fetching: false,
   data: null,
   error: null,
-  name: "",
-  price: "",
-  currency: ""
+  temporary: {
+    name: {
+      value: "",
+      valid: false
+    },
+    price: {
+      value: "",
+      valid: false
+    },
+    currency: {
+      value: "",
+      valid: false
+    },
+    error: {
+      name: true,
+      price: true,
+      currency: true
+    }
+  }
 };
 
 export default function productsReducer(state = initialState, action) {
@@ -20,7 +36,7 @@ export default function productsReducer(state = initialState, action) {
       return {
         ...state,
         fetching: true,
-        error: null,
+        error: null
       };
 
     case PRODUCTS_FETCH_SUCCESS:
@@ -39,17 +55,20 @@ export default function productsReducer(state = initialState, action) {
       };
 
     case CHANGE_ACTION:
-      if (action.index === undefined) {
-        state[action.field] = action.value;
-        return {
-          ...state
-        };
-      } else {
-        state.products[action.index][action.field] = action.value;
-        return {
-          ...state
-        };
-      }
+      return {
+        ...state,
+        temporary: {
+          ...state.temporary,
+          [action.field]: {
+            value: action.value,
+            valid: action.valid
+          },
+          error: {
+            ...state.temporary.error,
+            [action.field]: action.valid
+          }
+        }
+      };
 
     default:
       return state;
