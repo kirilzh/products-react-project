@@ -1,5 +1,6 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 import { api } from "./api";
+import { delay } from "redux-saga";
 
 // watcher saga: watches for actions dispatched to the store, starts working saga
 export function* watchGetproducts() {
@@ -17,7 +18,8 @@ function* getProducts() {
   } catch (error) {
     // dispatch a failure action to the store with the error
     yield put({ type: "PRODUCTS_FETCH_FAILURE ", error });
-    setInterval(yield put({ type: "PRODUCTS_FETCH_REQUEST" }), 1000);
+    yield delay(3000);
+    yield put({ type: "PRODUCTS_FETCH_REQUEST" });
   }
 }
 

@@ -30,9 +30,9 @@ class Products extends Component {
             onClick={() =>
               this.props.onUpdateProduct({
                 id: id,
-                name: this.props.products.name,
-                price: this.props.products.price,
-                currency: this.props.products.currency
+                name: this.props.products.temporary.name.value,
+                price: this.props.products.temporary.price.value,
+                currency: this.props.products.temporary.currency.value
               })
             }
           >
