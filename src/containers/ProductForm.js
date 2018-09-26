@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeAction } from "../actions/index";
-import FormInput from "../components/FormInput";
+import FormInput from "./FormInput/FormInput";
 
 class ProductForm extends Component {
   constructor(props) {

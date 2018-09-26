@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./containers/App";
 import "./style.css";
 import registerServiceWorker from "./registerServiceWorker";
+import "babel-polyfill";
 
 import { createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";

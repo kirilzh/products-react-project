@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./FormInput.css";
-import { changeAction } from "../actions";
+import { changeAction } from "../../actions";
 import connect from "react-redux/es/connect/connect";
 
 const styleError = {
