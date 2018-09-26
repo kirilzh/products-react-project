@@ -1,4 +1,5 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import axios from 'axios';
 
 export function* validationsWatcherSaga() {
@@ -31,6 +32,7 @@ function* workerSaga() {
   } catch (error) {
     // dispatch failure action to the store with the error
     yield put({ type: "VALIDATIONS_FETCH_FAILURE", error });
+    yield delay(3000);
     yield put({ type: "VALIDATIONS_FETCH_REQUEST" });
   }
 }
