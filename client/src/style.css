@@ -1,25 +1,48 @@
+* {
+  margin: 0;
+  padding: 0px;
+}
+
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 90%;
-  margin: 0 auto;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 td,
 th {
-  border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+td:first-child {
+  width: 30%;
 }
 
-input {
-  width: 50%;
-  display: block;
-  margin: 15px auto;
+tbody tr:nth-child(even) {
+  background-color: #f3f5f3;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #d7cfee;
+}
+
+thead tr{
+  background-color: #6c7ae0 !important;
+}
+
+thead th {
+  color: white;
+}
+
+#addButton {
+  margin-top: 10px;
+  text-align: center;
+  width: 10%;
 }
 
 .bg-modal {
@@ -50,4 +73,8 @@ input {
   font-size: 41px;
   transform: rotate(45deg);
   cursor: pointer;
+}
+
+.content{
+  text-align: center;
 }

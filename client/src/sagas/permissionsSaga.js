@@ -25,5 +25,6 @@ function* workerSaga() {
   } catch (error) {
     // dispatch failure action to the store with the error
     yield put({ type: "PERMISSIONS_FETCH_FAILURE", error });
+    yield put({ type: "PERMISSIONS_FETCH_REQUEST" });
   }
 }
