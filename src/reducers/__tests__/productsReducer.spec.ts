@@ -4,7 +4,7 @@ import products, {
   PRODUCTS_FETCH_SUCCESS,
   PRODUCTS_FETCH_FAILURE,
   CHANGE_ACTION
-} from "../productsReducer";
+} from "../products";
 import { Reducer } from "redux-testkit";
 
 const productsDataMock = {

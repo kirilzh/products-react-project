@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import products from "./productsReducer";
-import permissions from "./permissionsReducer";
-import validations from "./validationsReducer";
+import products from "./products";
+import permissions from "./permissions";
+import validations from "./validations";
 
 const rootReducer = combineReducers({
   products,

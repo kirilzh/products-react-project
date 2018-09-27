@@ -1,5 +1,5 @@
 import { Reducer } from "redux-testkit";
-import permissions from "../permissionsReducer";
+import permissions from "../permissions";
 
 const initialState: any = {
   data: null,

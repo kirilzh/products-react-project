@@ -1,16 +1,15 @@
 import { Reducer } from "redux-testkit";
-import {
+import validations, {
   VALIDATIONS_FETCH_REQUEST,
   VALIDATIONS_FETCH_SUCCESS,
   VALIDATIONS_FETCH_FAILURE,
   initialState
-} from "../validationsReducer";
-import validations from "../validationsReducer"
+} from "../validations";
 
 const validationsDataMock: any = {
   name: "^[a-zA-Z0-9 ]+$",
   price: "^[0-\\.9]+$",
-  currency: "^[A-Z]+$",
+  currency: "^[A-Z]+$"
 };
 
 const validationsErrorMock: string = "golqm problem";
