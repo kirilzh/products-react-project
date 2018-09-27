@@ -43,6 +43,7 @@ module.exports = {
     })
   ],
   devServer: {
+    historyApiFallback: true,
     proxy: {
       "/permissions": {
         "target": "http://localhost:5000"
