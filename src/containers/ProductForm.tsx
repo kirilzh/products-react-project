@@ -1,9 +1,24 @@
-import React, { Component } from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { changeAction } from "../actions/index";
 import FormInput from "./FormInput/FormInput";
 
-class ProductForm extends Component {
+type ProductFormProps = {
+  products: any,
+  permissions: any,
+  validations: any,
+  onPostProduct: any,
+  togglePermission: Function,
+  changeAction: Function,
+  updateProduct: Function,
+  onRequestPermissions: Function,
+  onRequestProducts: Function,
+  onRequestValidations: Function,
+  onDeleteProduct: Function,
+  onUpdateProduct: Function
+}
+
+class ProductForm extends React.Component<ProductFormProps> {
   constructor(props) {
     super(props);
 
@@ -36,7 +51,7 @@ class ProductForm extends Component {
         <button
           id="addButton"
           onClick={() => {
-            document.querySelector(".bg-modal").style.display = "flex";
+            (document.querySelector(".bg-modal") as HTMLElement).style.display = "flex";
           }}
         >
           ADD
@@ -46,7 +61,7 @@ class ProductForm extends Component {
             <div
               className="close"
               onClick={() => {
-                document.querySelector(".bg-modal").style.display = "none";
+                (document.querySelector(".bg-modal") as HTMLElement).style.display = "none";
               }}
             >
               +
@@ -81,7 +96,7 @@ class ProductForm extends Component {
 
               <button
                 id="submitForm"
-                disabled={Object.values(
+                disabled={(Object as any).values(
                   this.props.products.temporary.error
                 ).find(val => val)}
                 onClick={this.handlePost}
