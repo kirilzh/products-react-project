@@ -1,5 +1,5 @@
 import { Reducer } from "redux-testkit";
-import permissions from "./permissionsReducer";
+import permissions from "../permissionsReducer";
 
 const initialState: any = {
   data: null,
@@ -16,7 +16,7 @@ const permissionsDataMock: any = {
 const permissionsErrorMock: string = "golqm problem";
 
 describe("Permissions Reducer", () => {
-  it("should fetch permissions", () => {
+  it("should reqeust for permissions", () => {
     const action = { type: "PERMISSIONS_FETCH_REQUEST" };
 
     Reducer(permissions)
@@ -27,7 +27,7 @@ describe("Permissions Reducer", () => {
       });
   });
 
-  it("add product to data", () => {
+  it("receive permissions", () => {
     const action = { type: "PERMISSIONS_FETCH_SUCCESS", permissions: permissionsDataMock };
     Reducer(permissions)
       .expect(action)
@@ -38,7 +38,7 @@ describe("Permissions Reducer", () => {
       });
   });
 
-  it("should give you error", () => {
+  it("should receive error on failed request", () => {
     const action = { type: "PERMISSIONS_FETCH_FAILURE", error: permissionsErrorMock };
     Reducer(permissions)
       .expect(action)

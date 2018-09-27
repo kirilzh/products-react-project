@@ -1,12 +1,23 @@
-import React, { Component } from "react";
+import * as React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-
 import { toggleButton } from "../actions/index";
-import SGTable from "../components/table/sgTable";
+import Table from "../components/table/Table";
 import ProductFrom from "./ProductForm";
 
-class Products extends Component {
+type ProductsProps = {
+  products: any,
+  permissions: any,
+  onPostProduct: any,
+  togglePermission: Function,
+  changeAction: Function,
+  updateProduct: Function,
+  onRequestPermissions: Function,
+  onRequestProducts: Function,
+  onDeleteProduct: Function,
+  onUpdateProduct: Function
+}
+
+class Products extends React.Component<ProductsProps> {
   componentDidMount() {
     const { onRequestPermissions, onRequestProducts } = this.props;
     onRequestPermissions();
@@ -59,7 +70,7 @@ class Products extends Component {
 
     return (
       <React.Fragment>
-        <SGTable
+        <Table
           columns={[
             { accessor: "_id", label: "id" },
             {
@@ -84,12 +95,7 @@ class Products extends Component {
   }
 }
 
-Products.propType = {
-  products: PropTypes.object.isRequired,
-  togglePermission: PropTypes.func.isRequired,
-  changeAction: PropTypes.func.isRequired,
-  updateProduct: PropTypes.func.isRequired
-};
+
 
 // Map Redux state to component
 function mapStateToProps(state) {
