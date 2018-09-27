@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { changeAction } from "../actions/index";
+import { changeAction } from "../actions";
 import FormInput from "./FormInput/FormInput";
 
 type ProductFormProps = {
@@ -121,7 +121,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeAction: (field, value) => dispatch(changeAction(field, value)),
+    changeAction: (field, value, valid) => dispatch(changeAction(field, value, valid)),
     onPostProduct: product =>
       dispatch({ type: "PRODUCT_POST_REQUEST", product }),
     onRequestValidations: () => dispatch({ type: "VALIDATIONS_FETCH_REQUEST" })

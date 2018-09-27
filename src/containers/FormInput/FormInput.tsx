@@ -1,7 +1,20 @@
-import React, { Component } from "react";
+import * as React from "react";
 import "./FormInput.css";
-import { changeAction } from "../../actions";
+import { changeAction } from "../../actions/index";
 import connect from "react-redux/es/connect/connect";
+
+type MyProps = {
+  changeAction: Function,
+  name: any,
+  regex: string,
+  floatingLabel: string,
+  errorLabel: string,
+  products: any,
+}
+
+type MyState = {
+  backgroundColor: any
+}
 
 const styleError = {
   backgroundColor: "mistyrose"
@@ -12,27 +25,27 @@ const styleValid = {
 };
 
 const styleDefault = {
-  backgroundColor: "white"
+  backgroundColor: "white",
 };
 
-class FormInput extends Component {
+class FormInput extends React.Component<MyProps, MyState> {
   constructor(props) {
     super(props);
 
     this.state = {
-      backgroundColor: styleDefault
+      backgroundColor: styleDefault,
     };
   }
 
-  handleChange(event, regex) {
+  public handleChange(event: any, regex: string) : void {
     const value = event.target.value;
-    //this.props.changeAction(event.target.name, value);
+    const name = event.target.name;
 
     if (value.match(regex)) {
-      this.props.changeAction(event.target.name, value, false);
+      this.props.changeAction(name, value, false);
       this.setState({ backgroundColor: styleValid });
     } else {
-      this.props.changeAction(event.target.name, value, true);
+      this.props.changeAction(name, value, true);
       this.setState({ backgroundColor: styleError });
     }
   }
@@ -47,7 +60,7 @@ class FormInput extends Component {
             name={this.props.name}
             required
             onChange={event =>
-              this.handleChange(event, this.props.regex, this.props.errorName)
+              this.handleChange(event, this.props.regex)
             }
             pattern={this.props.regex}
             autoComplete="off"

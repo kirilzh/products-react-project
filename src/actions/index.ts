@@ -6,10 +6,9 @@ export const toggleButton = (button, index) => ({
 });
 
 // INPUT FIELD CHANGE
-export const changeAction = (field, value, valid) => ({
+export const changeAction = (field: string, value: number | string, valid: boolean) => ({
   type: "CHANGE_ACTION",
   field,
   value,
   valid
 });
-
