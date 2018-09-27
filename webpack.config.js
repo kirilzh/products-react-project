@@ -8,6 +8,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: "webpack.bundle.js"
   },
+  devtool: "source-map",
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json"]
+  },
+
   module: {
     rules: [
       {
@@ -16,6 +21,10 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.tsx?$/,
+        loader: "awesome-typescript-loader"
       },
       {
         test: /\.html$/,

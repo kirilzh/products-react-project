@@ -5,7 +5,7 @@ const PERMISSIONS_FETCH_REQUEST = "PERMISSIONS_FETCH_REQUEST";
 const PERMISSIONS_FETCH_SUCCESS = "PERMISSIONS_FETCH_SUCCESS";
 const PERMISSIONS_FETCH_FAILURE = "PERMISSIONS_FETCH_FAILURE";
 
-const initialState = {
+const initialState: any = {
   data: null,
   fetching: false,
   error: null
