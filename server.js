@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
+
+const CONFIG = require("./config");
 require("./models/Product");
 require("./models/Permission");
 require("./models/Validation");
@@ -10,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 const port = 5000;
 
-mongoose.connect("mongodb://sguser:sguser.123@ds251332.mlab.com:51332/sg-task");
+mongoose.connect(`mongodb://${CONFIG.USER}:${CONFIG.PASSWORD}@ds251332.mlab.com:51332/sg-task`);
 
 const Product = mongoose.model("products");
 const Permission = mongoose.model("permissions");
