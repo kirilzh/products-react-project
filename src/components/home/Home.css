@@ -57,21 +57,3 @@ button {
   margin: 1px;
   padding: 3px 2px;
 }
-
-@media (min-width: 576px) {
-  body {
-    background-color: #6c7ae0;
-  }
-}
-
-@media (min-width: 768px) {
-  body {
-    background-color: indianred;
-  }
-}
-
-@media (min-width: 992px) {
-  body {
-    background-color: white;
-  }
-}

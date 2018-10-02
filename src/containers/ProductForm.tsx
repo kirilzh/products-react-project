@@ -4,19 +4,19 @@ import { changeAction } from "../actions";
 import FormInput from "./FormInput/FormInput";
 
 type ProductFormProps = {
-  products: any,
-  permissions: any,
-  validations: any,
-  onPostProduct: any,
-  togglePermission: Function,
-  changeAction: Function,
-  updateProduct: Function,
-  onRequestPermissions: Function,
-  onRequestProducts: Function,
-  onRequestValidations: Function,
-  onDeleteProduct: Function,
-  onUpdateProduct: Function
-}
+  products: any;
+  permissions: any;
+  validations: any;
+  onPostProduct: any;
+  togglePermission: Function;
+  changeAction: Function;
+  updateProduct: Function;
+  onRequestPermissions: Function;
+  onRequestProducts: Function;
+  onRequestValidations: Function;
+  onDeleteProduct: Function;
+  onUpdateProduct: Function;
+};
 
 class ProductForm extends React.Component<ProductFormProps> {
   constructor(props) {
@@ -51,7 +51,11 @@ class ProductForm extends React.Component<ProductFormProps> {
         <button
           id="addButton"
           onClick={() => {
-            (document.querySelector(".bg-modal") as HTMLElement).style.display = "flex";
+            (document.querySelector(".bg-modal") as HTMLElement).style.display =
+              "flex";
+            (document.querySelector(
+              ".bg-modal"
+            ) as HTMLElement).style.position = "absolute";
           }}
         >
           ADD
@@ -61,14 +65,16 @@ class ProductForm extends React.Component<ProductFormProps> {
             <div
               className="close"
               onClick={() => {
-                (document.querySelector(".bg-modal") as HTMLElement).style.display = "none";
+                (document.querySelector(
+                  ".bg-modal"
+                ) as HTMLElement).style.display = "none";
               }}
             >
               +
             </div>
             <hr />
             <form>
-              <h1>Add Product</h1>
+              <h1 id="headProduct">Add Product</h1>
               <FormInput
                 name="name"
                 floatingLabel="Name"
@@ -96,9 +102,9 @@ class ProductForm extends React.Component<ProductFormProps> {
 
               <button
                 id="submitForm"
-                disabled={(Object as any).values(
-                  this.props.products.temporary.error
-                ).find(val => val)}
+                disabled={(Object as any)
+                  .values(this.props.products.temporary.error)
+                  .find(val => val)}
                 onClick={this.handlePost}
               >
                 Add Product
@@ -121,7 +127,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeAction: (field, value, valid) => dispatch(changeAction(field, value, valid)),
+    changeAction: (field, value, valid) =>
+      dispatch(changeAction(field, value, valid)),
     onPostProduct: product =>
       dispatch({ type: "PRODUCT_POST_REQUEST", product }),
     onRequestValidations: () => dispatch({ type: "VALIDATIONS_FETCH_REQUEST" })

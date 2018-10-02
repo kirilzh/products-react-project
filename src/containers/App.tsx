@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Products from "./Products";
 import Home from "../components/home/Home";
 import About from "../components/about/About"
+import Tiles from "./Tiles";
 
 const App = () => (
   <Router>
@@ -17,6 +18,9 @@ const App = () => (
               <Link to="/table">Table</Link>
             </li>
             <li>
+              <Link to="/tableTiles">Playground</Link>
+            </li>
+            <li>
               <Link to="/about">About</Link>
             </li>
           </ul>
@@ -29,6 +33,9 @@ const App = () => (
         </section>
         <section className="content">
           <Route path="/table" component={Products} />
+        </section>
+        <section className="content">
+          <Route path="/tableTiles" component={Tiles} />
         </section>
         <section>
           <Route exact path="/about" component={About}/>

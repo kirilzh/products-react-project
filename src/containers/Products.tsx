@@ -1,21 +1,22 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { toggleButton } from "../actions/index";
+import { toggleButton } from "../actions";
 import Table from "../components/table/Table";
 import ProductFrom from "./ProductForm";
+import LoaderHOC from '../HOC/loader'
 
 type ProductsProps = {
-  products: any,
-  permissions: any,
-  onPostProduct: any,
-  togglePermission: Function,
-  changeAction: Function,
-  updateProduct: Function,
-  onRequestPermissions: Function,
-  onRequestProducts: Function,
-  onDeleteProduct: Function,
-  onUpdateProduct: Function
-}
+  products: any;
+  permissions: any;
+  onPostProduct: any;
+  togglePermission: Function;
+  changeAction: Function;
+  updateProduct: Function;
+  onRequestPermissions: Function;
+  onRequestProducts: Function;
+  onDeleteProduct: Function;
+  onUpdateProduct: Function;
+};
 
 class Products extends React.Component<ProductsProps> {
   componentDidMount() {
@@ -82,7 +83,10 @@ class Products extends React.Component<ProductsProps> {
             { accessor: "currency", label: "currency" },
             {
               accessor: this.renderPermissionButton,
-              style: {},
+              style: {
+                color: "brown",
+                fontWeight: "bold"
+              },
               label: "actions"
             }
           ]}
@@ -94,8 +98,6 @@ class Products extends React.Component<ProductsProps> {
     );
   }
 }
-
-
 
 // Map Redux state to component
 function mapStateToProps(state) {
@@ -123,4 +125,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Products);
+)(LoaderHOC('products', Products));

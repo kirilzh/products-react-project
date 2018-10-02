@@ -41,8 +41,6 @@ input:valid ~ .floatingLabel {
 }
 
 .errorLabel {
-  position: absolute;
   margin-top: 5px;
-  margin-left: -40%;
   color: indianred;
 }

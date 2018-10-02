@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./FormInput.css";
-import { changeAction } from "../../actions/index";
+import { changeAction } from "../../actions";
 import connect from "react-redux/es/connect/connect";
 
 type MyProps = {
